@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/barcode/Barcode.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/barcode/Barcode2.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/create-record/CreateRecord.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/create-record/CreateRecord.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/create-record/CreateRecord.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/create-table/CreateTable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/create-table/CreateTable.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/create-table/CreateTable.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/interfaces/Record.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/table-list/TableList.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/table-list/TableList.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/table-list/TableList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/table/DataTable.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/table/DataTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="1XPDH8DaYqqnLq3vLVD6IvOI5Fx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -9,7 +55,237 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/barcode" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.NodeInterpreter" value="project" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/../.nvm/versions/node/v13.1.0/lib/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/barcode" />
+      <recent name="$PROJECT_DIR$/src/components/create-record" />
+      <recent name="$PROJECT_DIR$/src/components/table-list" />
+      <recent name="$PROJECT_DIR$/src/components/table" />
+      <recent name="$PROJECT_DIR$/src/components/create-table" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/components/root" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Jest.renders a barcode">
+    <configuration name="DataTable.test.tsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" />
+      <method v="2" />
+    </configuration>
+    <configuration name="renders a barcode" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" />
+      <test-names>
+        <test-name value="renders a barcode" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="renders a record" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" />
+      <test-names>
+        <test-name value="renders a record" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="renders learn react link (2)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/components/root/App.test.tsx" />
+      <test-names>
+        <test-name value="renders learn react link" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="renders multiple lines" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" />
+      <test-names>
+        <test-name value="renders multiple lines" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.renders a barcode" />
+        <item itemvalue="Jest.DataTable.test.tsx" />
+        <item itemvalue="Jest.renders a record" />
+        <item itemvalue="Jest.renders multiple lines" />
+        <item itemvalue="Jest.renders learn react link (2)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="" />
+      <created>1580938745599</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580938745599</updated>
+      <workItem from="1580938747467" duration="2336000" />
+      <workItem from="1581064225705" duration="75000" />
+      <workItem from="1581099398789" duration="19245000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581099474718">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581099474718" />
+    <state x="571" y="335" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580939356245">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="571" y="335" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1580939356245" />
+    <state x="399" y="198" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1581194180691">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="399" y="198" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581194180691" />
+    <state width="1659" height="427" key="GridCell.Tab.0.bottom" timestamp="1581197713035">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="427" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581197713035" />
+    <state width="1659" height="427" key="GridCell.Tab.0.center" timestamp="1581197713034">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="427" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581197713034" />
+    <state width="1659" height="427" key="GridCell.Tab.0.left" timestamp="1581197713034">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="427" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581197713034" />
+    <state width="1659" height="427" key="GridCell.Tab.0.right" timestamp="1581197713035">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="427" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581197713035" />
+    <state width="1659" height="396" key="GridCell.Tab.1.bottom" timestamp="1581196951258">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581196951258" />
+    <state width="1659" height="396" key="GridCell.Tab.1.center" timestamp="1581196951258">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581196951258" />
+    <state width="1659" height="396" key="GridCell.Tab.1.left" timestamp="1581196951257">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581196951257" />
+    <state width="1659" height="396" key="GridCell.Tab.1.right" timestamp="1581196951258">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581196951258" />
+    <state width="1659" height="396" key="GridCell.Tab.2.bottom" timestamp="1581196951260">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.2.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581196951260" />
+    <state width="1659" height="396" key="GridCell.Tab.2.center" timestamp="1581196951259">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.2.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581196951259" />
+    <state width="1659" height="396" key="GridCell.Tab.2.left" timestamp="1581196951259">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.2.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581196951259" />
+    <state width="1659" height="396" key="GridCell.Tab.2.right" timestamp="1581196951259">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.2.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581196951259" />
+    <state width="1659" height="396" key="GridCell.Tab.3.bottom" timestamp="1581196741223">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.3.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581196741223" />
+    <state width="1659" height="396" key="GridCell.Tab.3.center" timestamp="1581196741222">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.3.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581196741222" />
+    <state width="1659" height="396" key="GridCell.Tab.3.left" timestamp="1581196741222">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.3.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581196741222" />
+    <state width="1659" height="396" key="GridCell.Tab.3.right" timestamp="1581196741223">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="396" key="GridCell.Tab.3.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581196741223" />
+    <state x="708" y="243" key="RollbackChangesDialog" timestamp="1581013513609">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="708" y="243" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581013513609" />
+    <state x="341" y="164" key="SettingsEditor" timestamp="1581194143124">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1581194143124" />
+    <state x="498" y="282" width="683" height="486" key="find.popup" timestamp="1581191672616">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="498" y="282" width="683" height="486" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581191672616" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1581193923592">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="600" height="424" key="javadoc.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581193923592" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1581196136099">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581196136099" />
   </component>
 </project>
