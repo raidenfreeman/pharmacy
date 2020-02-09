@@ -1,40 +1,22 @@
-import React from "react";
-import JsBarcode from "jsbarcode";
+import React, { useEffect, useRef } from "react";
+import JsBarcode, { Options } from "jsbarcode";
 
-// const getDOMNode = (ref: any) => ref;
-
-export class Barcode extends React.Component<{ value: string }> {
-  private myRef: React.RefObject<SVGSVGElement>;
-
-  constructor(props: any) {
-    super(props);
-    this.update = this.update.bind(this);
-    this.myRef = React.createRef();
-    debugger
-  }
-
-  componentDidMount() {
-    this.update();
-  }
-
-  componentDidUpdate() {
-    this.update();
-  }
-
-  update() {
-    const renderElement = this.myRef.current;
-    debugger
-    // @ts-ignore
-    new JsBarcode(renderElement, this.props.value);
-  }
-
-  render() {
-    // if (this.props.renderer === "svg") {
-    //   return <svg ref="renderElement" />;
-    // } else if (this.props.renderer === "canvas") {
-    //   return <canvas ref="renderElement" />;
-    // } else if (this.props.renderer === "img") {
-    return <svg ref={this.myRef} />;
-    // }
-  }
+export default function Barcode({
+  value,
+  options
+}: {
+  value: string;
+  options?: Options;
+}) {
+  const svgRef: any = useRef();
+  let error;
+  useEffect(() => {
+    try {
+      JsBarcode(svgRef.current, value, options);
+      error = false;
+    } catch (e) {
+      error = true;
+    }
+  });
+  return error ? <div>error</div> : <svg data-testid="gg" ref={svgRef} />;
 }

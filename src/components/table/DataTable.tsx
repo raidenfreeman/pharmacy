@@ -7,6 +7,7 @@ import MUIDataTable, {
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { v4 as uuid } from "uuid";
 import JsBarcode from "jsbarcode";
+import Barcode from "../barcode/Barcode";
 
 const override = {
   MUIDataTableBodyRow: {
@@ -47,21 +48,17 @@ function DataTable({
   columns: MUIDataTableColumnDef[];
   data: Array<object | number[] | string[]>;
 }) {
-  //
-  // const svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  // JsBarcode(svgNode, 'test', {
-  //   xmlDocument: document,
-  // });
-  const customBodyRender = (value: string) => {
-    let barcodeRef = React.createRef();
-    // @ts-ignore
-    new JsBarcode(barcodeRef, value, {
-      format: "pharmacode",
-      width: 4,
-      height: 80
-    });
-    return <img ref="barcodeRef" />;
-  };
+  const customBodyRender = (value: string) => (
+    <Barcode
+      value={value}
+      options={{
+        format: "pharmacode",
+        width: 3,
+        height: 40,
+        displayValue: false
+      }}
+    ></Barcode>
+  );
 
   const renderedColumns = columns.map(column => {
     if (column.hasOwnProperty("barcode") && typeof column !== "string") {

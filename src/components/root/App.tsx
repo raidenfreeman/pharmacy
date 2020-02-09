@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import "./App.css";
 import DataTable from "../table/DataTable";
-import { Barcode } from "../barcode/Barcode";
-import BarcodeF from "../barcode/Barcode2";
+import Barcode from "../barcode/Barcode";
 
 const columns = [
   {
@@ -31,84 +30,493 @@ const columns = [
     }
   },
   {
-    name: "state",
+    name: "barcode",
     label: "State",
     options: {
       filter: true,
       sort: false
-    }
+    },
+    barcode: true
   }
 ];
 
 const data = [
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "James Houston", company: "Test Corp", city: "Dallas", state: "TX" },
-  { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
-  { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
-  { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
-  { name: "dean Houston", company: "Tested Corp", city: "Dallas", state: "TX" }
+  {
+    barcode: "21212",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "James Houston",
+    company: "Test Corp",
+    city: "Dallas",
+    state: "TX"
+  },
+  {
+    barcode: "123213",
+    name: "Joe James",
+    company: "Test Corp",
+    city: "Yonkers",
+    state: "NY"
+  },
+  {
+    barcode: "123213",
+    name: "John Walsh",
+    company: "Test Corp",
+    city: "Hartford",
+    state: "CT"
+  },
+  {
+    barcode: "123213",
+    name: "Bob Herm",
+    company: "Test Corp",
+    city: "Tampa",
+    state: "FL"
+  },
+  {
+    barcode: "123213",
+    name: "dean Houston",
+    company: "Tested Corp",
+    city: "Dallas",
+    state: "TX"
+  }
 ];
 
 const App = () => {
@@ -119,9 +527,8 @@ const App = () => {
         Hello World
       </Button>
       <div className="table">
-        {/*<DataTable data={data} columns={columns} />*/}
-        {/*<Barcode value={"1234"}></Barcode>*/}
-        <BarcodeF value={b.toString()}></BarcodeF>
+        <DataTable data={data} columns={columns} />
+        {/*<Barcode value={b.toString()}></Barcode>*/}
       </div>
     </div>
   );
