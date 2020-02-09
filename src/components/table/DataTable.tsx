@@ -1,17 +1,19 @@
 import React from "react";
 
 import MUIDataTable, {
-  MUIDataTableColumnDef,
+  MUIDataTableColumn,
   MUIDataTableOptions
 } from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import Barcode from "../barcode/Barcode";
 
+export type Column = MUIDataTableColumn & { barcode?: boolean };
+
 const override = {
   MUIDataTableBodyRow: {
     root: {
       "&:nth-of-type(odd)": {
-        backgroundColor: "#203030",
+        backgroundColor: "#737373",
         color: "white"
       }
     }
@@ -33,24 +35,31 @@ const getMuiTheme = () =>
     overrides: override
   });
 
-const options: MUIDataTableOptions = {
-  filterType: "checkbox",
-  pagination: false,
-  responsive: "scrollFullHeight"
-};
-
 function DataTable({
   columns,
-  data
+  data,
+  onDelete
 }: {
-  columns: MUIDataTableColumnDef[];
-  data: Array<object | number[] | string[]>;
+  columns: Column[];
+  data: Array<{ [key: string]: string }>;
+  onDelete: (uuid: string) => void;
 }) {
+  const options: MUIDataTableOptions = {
+    filterType: "checkbox",
+    pagination: false,
+    responsive: "scrollFullHeight",
+    rowHover: false,
+    onRowsSelect: (rows: any[]) => {
+      if (rows.length === 1) {
+        onDelete(data[rows[0].dataIndex]["uuid"]);
+      }
+    },
+    filter: false
+  };
   const customBodyRender = (value: string) => (
     <Barcode
       value={value}
       options={{
-        format: "pharmacode",
         width: 3,
         height: 40,
         displayValue: true
@@ -59,7 +68,7 @@ function DataTable({
   );
 
   const renderedColumns = columns.map(column => {
-    if (column.hasOwnProperty("barcode") && typeof column !== "string") {
+    if (column["barcode"]) {
       return { ...column, options: { ...column.options, customBodyRender } };
     }
     return column;

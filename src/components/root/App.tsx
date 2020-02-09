@@ -1,55 +1,41 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
 import "./App.css";
-import DataTable from "../table/DataTable";
-
-const columns = [
-  {
-    name: "name",
-    label: "Name",
-    options: {
-      filter: true,
-      sort: true
-    }
-  },
-  {
-    name: "city",
-    label: "City",
-    options: {
-      filter: true,
-      sort: false
-    }
-  },
-  {
-    name: "company",
-    label: "Company",
-    options: {
-      filter: true,
-      sort: false
-    }
-  },
-  {
-    name: "barcode",
-    label: "State",
-    options: {
-      filter: true,
-      sort: false
-    },
-    barcode: true
-  }
-];
+import { v4 as uuid } from "uuid";
+import DataTable, { Column } from "../table/DataTable";
+import CreateRecord from "../create-record/CreateRecord";
+import CreateTable from "../create-table/CreateTable";
 
 const App = () => {
-  const [b, set] = useState(-123213);
-  const data = [
+  const [columns, setColumns] = useState<Array<Column>>([
     {
-      barcode: b.toString(),
+      name: "name",
+      label: "Name"
+    },
+    {
+      name: "city",
+      label: "City"
+    },
+    {
+      name: "company",
+      label: "Company"
+    },
+    {
+      name: "barcode",
+      label: "State",
+      barcode: true
+    }
+  ]);
+  const [data, setData] = useState<Array<{ [key: string]: string }>>([
+    {
+      uuid: uuid(),
+      barcode: "231231",
       name: "Joe James",
       company: "Test Corp",
       city: "Yonkers",
       state: "NY"
     },
     {
+      uuid: uuid(),
       barcode: "123213",
       name: "John Walsh",
       company: "Test Corp",
@@ -57,6 +43,7 @@ const App = () => {
       state: "CT"
     },
     {
+      uuid: uuid(),
       barcode: "123213",
       name: "Bob Herm",
       company: "Test Corp",
@@ -64,26 +51,33 @@ const App = () => {
       state: "FL"
     },
     {
+      uuid: uuid(),
       barcode: "123213",
       name: "James Houston",
       company: "Test Corp",
       city: "Dallas",
       state: "TX"
     }
-  ];
+  ]);
 
   return (
     <div className="App">
-      {/*{b}*/}
-      {/*<Button*/}
-      {/*  onClick={() => (b > 0 ? set(-b) : set(-b + 1))}*/}
-      {/*  variant="contained"*/}
-      {/*  color="primary"*/}
-      {/*>*/}
-      {/*  Hello World*/}
-      {/*</Button>*/}
+      <CreateTable
+        onColumnsChanged={columns => setColumns(columns)}
+      ></CreateTable>
+      <CreateRecord
+        columns={columns}
+        save={v => setData([...data, { ...v, uuid: uuid() }])}
+      />
       <div className="table">
-        <DataTable data={data} columns={columns} />
+        <DataTable
+          data={data}
+          columns={columns}
+          onDelete={(uuid: string) => {
+            const t = data.filter(x => x["uuid"] !== uuid);
+            setData(t);
+          }}
+        />
       </div>
     </div>
   );
