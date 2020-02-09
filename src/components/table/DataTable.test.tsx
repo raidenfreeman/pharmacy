@@ -1,29 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import App from "../root/App";
 import DataTable from "./DataTable";
-
-// import { DataRecord } from "../interfaces/Record";
-
-export enum RenderTypes {
-  Text,
-  Date,
-  Barcode
-}
-
-interface DataColumn {
-  id: string;
-  description: string;
-  renderAs: RenderTypes;
-}
-
-interface DataRecord<T> {
-  [key: string]: T;
-}
-
-// interface DataRecords{
-//   columns:[]
-// }
+import JsBarcode from "jsbarcode";
+import Barcode from "../barcode/Barcode";
 
 const columns = [
   {
@@ -91,6 +70,11 @@ test("renders multiple lines", () => {
 });
 
 test("renders a barcode", () => {
+  // const spy = jest.fn().mockImplementation(v => <div>{v}</div>);
+  // jest.mock("../barcode/Barcode", () => (v: any) => <div>{v}</div>);
+  jest.mock("../barcode/Barcode", () => jest.fn().mockImplementation(v => <div>{v}</div>));
+
+  // (Barcode as jest.MockedFunction<any>).mockImplementation(spy);
   const barcodeColumns = [
     {
       name: "barcode",
@@ -113,5 +97,5 @@ test("renders a barcode", () => {
     <DataTable columns={barcodeColumns} data={data} />
   );
   const record = getAllByAltText(/1234/i);
-  expect(record).toBeInTheDocument();
+  expect(record.length).toBe(1); //.toBeInTheDocument();
 });
