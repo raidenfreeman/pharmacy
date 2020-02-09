@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import JsBarcode, { Options } from "jsbarcode";
 
 export default function Barcode({
@@ -9,14 +9,23 @@ export default function Barcode({
   options?: Options;
 }) {
   const svgRef: any = useRef();
-  let error;
+  const [err, setErr] = useState(false);
   useEffect(() => {
     try {
       JsBarcode(svgRef.current, value, options);
-      error = false;
+      setErr(false);
     } catch (e) {
-      error = true;
+      setErr(true);
     }
-  });
-  return error ? <div>error</div> : <svg data-testid="gg" ref={svgRef} />;
+  }, [value, options]);
+  return (
+    <>
+      {err && <div>Άκυρο barcode: {value}</div>}
+      <svg
+        style={{ display: err ? "none" : undefined }}
+        data-testid="gg"
+        ref={svgRef}
+      />
+    </>
+  );
 }

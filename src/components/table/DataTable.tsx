@@ -5,8 +5,6 @@ import MUIDataTable, {
   MUIDataTableOptions
 } from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
-import { v4 as uuid } from "uuid";
-import JsBarcode from "jsbarcode";
 import Barcode from "../barcode/Barcode";
 
 const override = {
@@ -55,7 +53,7 @@ function DataTable({
         format: "pharmacode",
         width: 3,
         height: 40,
-        displayValue: false
+        displayValue: true
       }}
     ></Barcode>
   );
