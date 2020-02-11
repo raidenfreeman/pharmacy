@@ -3,7 +3,11 @@ import JsBarcode, { Options } from "jsbarcode";
 
 export default function Barcode({
   value,
-  options
+  options = {
+    width: 3,
+    height: 40,
+    displayValue: true
+  }
 }: {
   value: string;
   options?: Options;

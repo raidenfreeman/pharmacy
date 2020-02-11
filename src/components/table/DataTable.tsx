@@ -56,16 +56,7 @@ function DataTable({
     },
     filter: false
   };
-  const customBodyRender = (value: string) => (
-    <Barcode
-      value={value}
-      options={{
-        width: 3,
-        height: 40,
-        displayValue: true
-      }}
-    ></Barcode>
-  );
+  const customBodyRender = (value: string) => <Barcode value={value} />;
 
   const renderedColumns = columns.map(column => {
     if (column["barcode"]) {

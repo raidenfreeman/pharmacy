@@ -31,7 +31,7 @@ function CreateTable({
       columns.map(x => (x.name === name ? { ...x, barcode: e.target.checked } : x))
     );
   };
-  const save = () => console.log(columns);
+  const save = () => onColumnsChanged(columns);
   return (
     <Paper style={{ margin: 5, padding: 10 }}>
       <Grid direction={"column"} container spacing={3}>
