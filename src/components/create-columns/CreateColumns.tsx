@@ -5,16 +5,24 @@ import AddIcon from "@material-ui/icons/Add";
 import SaveIcon from "@material-ui/icons/Save";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Paper from "@material-ui/core/Paper";
-import { FormControlLabel, Grid, Switch } from "@material-ui/core";
+import {
+  Divider,
+  FormControlLabel,
+  Grid,
+  Switch,
+  Typography
+} from "@material-ui/core";
 import { v4 as uuid } from "uuid";
 import { Column } from "../table/DataTable";
 import TextField from "@material-ui/core/TextField";
 function CreateColumns({
-  onColumnsChanged
+  onColumnsChanged,
+  initialColumns
 }: {
-  onColumnsChanged: (columns: any) => void;
+  onColumnsChanged: (columns: Array<Column>) => void;
+  initialColumns?: Array<Column>;
 }) {
-  const [columns, setColumns] = useState<Array<Column>>([]);
+  const [columns, setColumns] = useState<Array<Column>>(initialColumns || []);
   const addColumn = () => {
     setColumns([...columns, { name: uuid(), label: "" }]);
   };
@@ -37,55 +45,78 @@ function CreateColumns({
       )
     );
   };
-  const save = () => onColumnsChanged(columns.filter(x => x.name !== ""));
+  const save = () => onColumnsChanged(columns.filter(x => x.label !== ""));
   return (
     <>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Fab color="secondary" onClick={save} aria-label="save">
+        <Fab
+          color="secondary"
+          disabled={
+            !columns || columns.filter(x => x.label !== "").length === 0
+          }
+          onClick={save}
+          aria-label="save"
+        >
           <SaveIcon />
         </Fab>
       </div>
-      <Paper style={{ margin: 5, padding: 20 }}>
+      {!columns ||
+        (columns.length === 0 && (
+          <Typography style={{ padding: 10, textAlign: "center" }} variant="h5">
+            Δημιουργήστε μια στήλη δεδομένων
+          </Typography>
+        ))}
+      <Paper style={{ margin: 5, padding: 10 }}>
         {columns && columns.length > 0 && (
-          <Grid direction={"column"} container spacing={3}>
+          <Grid
+            style={{ padding: 10 }}
+            direction={"column"}
+            container
+            spacing={3}
+          >
             {columns.map((c, i) => (
-              <Grid container spacing={3} key={c.name} item xs>
-                <Grid item xs>
-                  <TextField
-                    value={c.label}
-                    onChange={onLabelChange(c.name)}
-                    // ref={input => (d[c.name] = input)}
-                    label={"Name"}
-                    variant="outlined"
-                  />
+              <>
+                <Grid container spacing={3} key={c.name} item xs>
+                  <Grid item xs>
+                    <TextField
+                      value={c.label}
+                      onChange={onLabelChange(c.name)}
+                      // ref={input => (d[c.name] = input)}
+                      label={"Name"}
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid item xs>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={c.barcode || false}
+                          onChange={onToggleChange(c.name)}
+                          color="primary"
+                          inputProps={{ "aria-label": "primary checkbox" }}
+                        />
+                      }
+                      label="Barcode"
+                    />
+                  </Grid>
+                  <Grid item xs={1}>
+                    <Fab
+                      color="primary"
+                      onClick={removeColumn(c.name)}
+                      aria-label="add"
+                    >
+                      <DeleteIcon />
+                    </Fab>
+                  </Grid>
                 </Grid>
-                <Grid item xs>
-                  <FormControlLabel
-                    control={
-                      <Switch
-                        checked={c.barcode || false}
-                        onChange={onToggleChange(c.name)}
-                        color="primary"
-                        inputProps={{ "aria-label": "primary checkbox" }}
-                      />
-                    }
-                    label="Barcode"
-                  />
-                </Grid>
-                <Grid item xs={1}>
-                  <Fab
-                    color="primary"
-                    onClick={removeColumn(c.name)}
-                    aria-label="add"
-                  >
-                    <DeleteIcon />
-                  </Fab>
-                </Grid>
-              </Grid>
+                <Divider />
+              </>
             ))}
           </Grid>
         )}
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          style={{ display: "flex", marginTop: 10, justifyContent: "center" }}
+        >
           <Fab color="primary" onClick={addColumn} aria-label="add">
             <AddIcon />
           </Fab>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { DataCategory } from "../root/App";
 import TableCard from "./TableCard";
 import CreateCategory from "../create-category/CreateCategory";
@@ -18,23 +18,31 @@ function TableList({
   onAdd: (category: DataCategory) => void;
 }) {
   return (
-    <Grid container spacing={3}>
-      {categories &&
-        categories.length > 0 &&
-        categories.map(category => (
-          <Grid key={category.id} item xs>
-            <TableCard
-              category={category}
-              onEdit={() => onEdit(category)}
-              onSelect={() => onSelect(category)}
-              onDelete={() => onDelete(category)}
-            />
-          </Grid>
+    <>
+      {!categories ||
+        (categories.length === 0 && (
+          <Typography style={{ padding: 10, textAlign: "center" }} variant="h5">
+            Δημιουργήστε μια κατηγορία δεδομένων
+          </Typography>
         ))}
-      <Grid item xs>
-        <CreateCategory onCreateCategory={onAdd} />
+      <Grid container spacing={3}>
+        {categories &&
+          categories.length > 0 &&
+          categories.map(category => (
+            <Grid key={category.id} item xs>
+              <TableCard
+                category={category}
+                onEdit={() => onEdit(category)}
+                onSelect={() => onSelect(category)}
+                onDelete={() => onDelete(category)}
+              />
+            </Grid>
+          ))}
+        <Grid item xs>
+          <CreateCategory onCreateCategory={onAdd} />
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 }
 

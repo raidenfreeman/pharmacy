@@ -28,7 +28,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import SearchIcon from "@material-ui/icons/Search";
 import { useStyles } from "./style";
 import TableList from "../table-list/TableList";
 import CreateRecord from "../create-record/CreateRecord";
@@ -169,7 +169,9 @@ const App = () => {
     setCategories(categories.filter(x => x.id !== category.id));
   };
   const onSelectCategory = (category: DataCategory) => {
-    setSelectedCategoryIndex(categories.findIndex(x => x.id === category.id));
+    const r = categories.findIndex(x => x.id === category.id);
+    console.log(r);
+    setSelectedCategoryIndex(r);
   };
   const onEditCategory = (category: DataCategory) => {
     onSelectCategory(category);
@@ -177,7 +179,7 @@ const App = () => {
   };
   const onAddCategory = (category: DataCategory) => {
     setCategories([...categories, category]);
-    onSelectCategory(category);
+    setSelectedCategoryIndex(categories.length);
   };
   return (
     <div className="App">
@@ -246,7 +248,7 @@ const App = () => {
           </ListItem>
           <ListItem button component={Link} to="/rows">
             <ListItemIcon>
-              <MailIcon />
+              <SearchIcon />
             </ListItemIcon>
             <ListItemText primary={"Δεδομένα"} />
           </ListItem>
@@ -261,6 +263,7 @@ const App = () => {
               if (selectedCategoryIndex !== undefined) {
                 return (
                   <CreateColumns
+                    initialColumns={categories[selectedCategoryIndex].columns}
                     onColumnsChanged={columns =>
                       onUpdateCategoryColumns(
                         categories[selectedCategoryIndex],
@@ -270,7 +273,6 @@ const App = () => {
                   />
                 );
               } else {
-                console.log(selectedCategoryIndex);
                 return <Redirect to="/" />;
               }
             }}
