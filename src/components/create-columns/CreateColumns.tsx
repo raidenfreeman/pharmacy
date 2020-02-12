@@ -18,6 +18,9 @@ function CreateColumns({
   const addColumn = () => {
     setColumns([...columns, { name: uuid(), label: "" }]);
   };
+  const removeColumn = (name: String) => () => {
+    setColumns(columns.filter(x => x.name !== name));
+  };
   const onLabelChange = (name: string) => (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -34,7 +37,7 @@ function CreateColumns({
       )
     );
   };
-  const save = () => onColumnsChanged(columns);
+  const save = () => onColumnsChanged(columns.filter(x => x.name !== ""));
   return (
     <>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -70,7 +73,11 @@ function CreateColumns({
                   />
                 </Grid>
                 <Grid item xs={1}>
-                  <Fab color="primary" onClick={addColumn} aria-label="add">
+                  <Fab
+                    color="primary"
+                    onClick={removeColumn(c.name)}
+                    aria-label="add"
+                  >
                     <DeleteIcon />
                   </Fab>
                 </Grid>
