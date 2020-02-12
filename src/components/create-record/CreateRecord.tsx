@@ -5,15 +5,16 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import { Column } from "../table/DataTable";
+import { RowData } from "../root/App";
 
 function CreateRecord({
   columns,
   save
 }: {
   columns: Column[];
-  save: (values: { [key: string]: any }) => void;
+  save: (values: RowData) => void;
 }) {
-  const [s, set] = useState<{ [key: string]: any }>({});
+  const [s, set] = useState<RowData>({});
   const re = useRef<HTMLInputElement>(null);
 
   const onChangeGenerator = (key: string) => (v: any) =>
@@ -35,7 +36,6 @@ function CreateRecord({
               inputRef={i === 0 ? re : null}
               value={s[c.name] || ""}
               onChange={onChangeGenerator(c.name)}
-              // ref={input => (d[c.name] = input)}
               label={c.label}
               variant="outlined"
             />

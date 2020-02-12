@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/root/style.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/table-list/TableCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/barcode/Barcode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/barcode/Barcode.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/create-table/CreateTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-table/CreateTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/root/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/JsBarcode.pharmacode.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JsBarcode.pharmacode.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-record/CreateRecord.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-record/CreateRecord.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-table/CreateTable.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-category/CreateCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-table/CreateTable.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-table/CreateTable.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/root/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.test.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/root/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/table-list/TableList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table-list/TableList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table/DataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/DataTable.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +176,7 @@
       <workItem from="1581323792618" duration="62000" />
       <workItem from="1581405794199" duration="1130000" />
       <workItem from="1581441116182" duration="2955000" />
-      <workItem from="1581446420748" duration="913000" />
+      <workItem from="1581446420748" duration="13072000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1581200419667</created>
@@ -229,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581406347827</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Adds routing and sidebar">
+      <created>1581450923619</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1581450923619</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +252,8 @@
     <MESSAGE value="proper error rendering for barcodes" />
     <MESSAGE value="Added create record and create table / columns definition" />
     <MESSAGE value="webstorm config :(" />
-    <option name="LAST_COMMIT_MESSAGE" value="webstorm config :(" />
+    <MESSAGE value="Adds routing and sidebar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds routing and sidebar" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="190" key="#Inspections" timestamp="1581443382238">
@@ -263,11 +276,15 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581200976841" />
-    <state x="1814" y="-951" key="CommitChangelistDialog2" timestamp="1581406347716">
-      <screen x="1359" y="-1080" width="1920" height="1080" />
+    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1581450923403">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="1814" y="-951" key="CommitChangelistDialog2/-561.-1080.1920.1080/0.0.1680.1050/1359.-1080.1920.1080@1359.-1080.1920.1080" timestamp="1581406347716" />
-    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1581286844133" />
+    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1581450923403" />
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1581469491898">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581469491898" />
     <state x="2184" y="-640" key="Github.ShareDialog" timestamp="1581405895460">
       <screen x="1359" y="-1080" width="1920" height="1080" />
     </state>
@@ -344,17 +361,21 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1581194143124" />
-    <state x="498" y="282" width="683" height="486" key="find.popup" timestamp="1581445618611">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1581452905799">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="498" y="282" width="683" height="486" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581445618611" />
-    <state width="600" height="424" key="javadoc.popup" timestamp="1581193923592">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1581452905799" />
+    <state x="498" y="282" width="837" height="550" key="find.popup" timestamp="1581461331501">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="600" height="424" key="javadoc.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581193923592" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1581446475193">
+    <state x="498" y="282" width="837" height="550" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581461331501" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1581468710288">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581446475193" />
+    <state width="600" height="424" key="javadoc.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581468710288" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1581469889718">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581469889718" />
   </component>
 </project>

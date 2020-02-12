@@ -23,7 +23,7 @@ const columns = [
   }
 ];
 test("renders a record", () => {
-  const data = [
+  const rows = [
     {
       uuid: "uuid1",
       name: "record1",
@@ -31,13 +31,13 @@ test("renders a record", () => {
     }
   ];
 
-  const { getByText } = render(<DataTable columns={columns} data={data} />);
+  const { getByText } = render(<DataTable columns={columns} rows={data} />);
   const record = getByText(/record1/i);
   expect(record).toBeInTheDocument();
 });
 
 test("renders multiple lines", () => {
-  const data = [
+  const rows = [
     {
       uuid: "uuid1",
       name: "record1",
@@ -64,7 +64,7 @@ test("renders multiple lines", () => {
       expiration: new Date("01-01-2019").toLocaleString()
     }
   ];
-  const { getAllByText } = render(<DataTable columns={columns} data={data} />);
+  const { getAllByText } = render(<DataTable columns={columns} rows={data} />);
   const { length } = getAllByText(/record/i);
   expect(length).toBe(5);
 });
@@ -86,7 +86,7 @@ test("renders a barcode", () => {
       barcode: true
     }
   ];
-  const data = [
+  const rows = [
     {
       uuid: "uuid1",
       barcode: "1234"
@@ -94,7 +94,7 @@ test("renders a barcode", () => {
   ];
 
   const { getAllByAltText } = render(
-    <DataTable columns={barcodeColumns} data={data} />
+    <DataTable columns={barcodeColumns} rows={data} />
   );
   const record = getAllByAltText(/1234/i);
   expect(record.length).toBe(1); //.toBeInTheDocument();

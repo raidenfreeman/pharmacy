@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "./App.css";
-import { v4 as uuid } from "uuid";
 import DataTable, { Column } from "../table/DataTable";
-import CreateRecord from "../create-record/CreateRecord";
-import CreateTable from "../create-table/CreateTable";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import clsx from "clsx";
+import CreateColumns from "../create-columns/CreateColumns";
 import {
-  createStyles,
-  makeStyles,
-  useTheme,
-  Theme
-} from "@material-ui/core/styles";
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+  Redirect
+} from "react-router-dom";
+import clsx from "clsx";
+import { useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -29,11 +29,29 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import {useStyles} from "./style";
+import { useStyles } from "./style";
+import TableList from "../table-list/TableList";
+import CreateRecord from "../create-record/CreateRecord";
+
+export interface DataCategory {
+  id: string;
+  name: string;
+  columns: Array<Column>;
+  rows: Array<RowData>;
+}
+
+export interface RowData {
+  [key: string]: string;
+}
+
+// export interface RowData extends RowInnerData {
+//   uuid: string;
+// }
 
 const App = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -43,162 +61,277 @@ const App = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const [columns, setColumns] = useState<Array<Column>>([
-    {
-      name: "name",
-      label: "Name"
-    },
-    {
-      name: "city",
-      label: "City"
-    },
-    {
-      name: "company",
-      label: "Company"
-    },
-    {
-      name: "barcode",
-      label: "State",
-      barcode: true
-    }
-  ]);
-  const [data, setData] = useState<Array<{ [key: string]: string }>>([
-    {
-      uuid: uuid(),
-      barcode: "231231",
-      name: "Joe James",
-      company: "Test Corp",
-      city: "Yonkers",
-      state: "NY"
-    },
-    {
-      uuid: uuid(),
-      barcode: "123213",
-      name: "John Walsh",
-      company: "Test Corp",
-      city: "Hartford",
-      state: "CT"
-    },
-    {
-      uuid: uuid(),
-      barcode: "123213",
-      name: "Bob Herm",
-      company: "Test Corp",
-      city: "Tampa",
-      state: "FL"
-    },
-    {
-      uuid: uuid(),
-      barcode: "123213",
-      name: "James Houston",
-      company: "Test Corp",
-      city: "Dallas",
-      state: "TX"
-    }
-  ]);
 
+  const [categories, setCategories] = useState<Array<DataCategory>>([]);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<number>();
+
+  const onUpdateCategoryRow = (category: DataCategory, newRow: RowData) => {
+    const categoryIndex = categories.findIndex(x => x.id === category.id);
+    const newCategoryRows = [...categories[categoryIndex].rows, newRow];
+    const newCategory = Object.assign({}, categories[categoryIndex], {
+      rows: newCategoryRows
+    });
+    setCategories(
+      categories.map((oldCategory, i) =>
+        i === categoryIndex ? newCategory : oldCategory
+      )
+    );
+  };
+  const onUpdateCategoryRows = (
+    category: DataCategory,
+    newRows: Array<RowData>
+  ) => {
+    const categoryIndex = categories.findIndex(x => x.id === category.id);
+    const newCategory = Object.assign({}, categories[categoryIndex], {
+      rows: newRows
+    });
+    setCategories(
+      categories.map((oldCategory, i) =>
+        i === categoryIndex ? newCategory : oldCategory
+      )
+    );
+  };
+  const onAddCategoryRow = (category: DataCategory, newRow: RowData) => {
+    const newCategory = Object.assign({}, category, {
+      rows: [...category.rows, newRow]
+    });
+    setCategories(
+      categories.map(oldCategory =>
+        oldCategory.id === category.id ? newCategory : oldCategory
+      )
+    );
+  };
+  const onUpdateCategoryColumns = (
+    category: DataCategory,
+    newColumns: Array<Column>
+  ) => {
+    const categoryIndex = categories.findIndex(x => x.id === category.id);
+    const newCategory = Object.assign({}, categories[categoryIndex], {
+      columns: newColumns
+    });
+    setCategories(
+      categories.map((oldCategory, i) =>
+        i === categoryIndex ? newCategory : oldCategory
+      )
+    );
+  };
+  const onUpdateCategoryColumn = (
+    category: DataCategory,
+    newColumn: Column
+  ) => {
+    const categoryIndex = categories.findIndex(x => x.id === category.id);
+    const newCategoryColumns = [
+      ...categories[categoryIndex].columns,
+      newColumn
+    ];
+    const newCategory = Object.assign({}, categories[categoryIndex], {
+      columns: newColumn
+    });
+    setCategories(
+      categories.map((oldCategory, i) =>
+        i === categoryIndex ? newCategory : oldCategory
+      )
+    );
+  };
+  const onDeleteCategoryRow = (category: DataCategory, rowId: string) => {
+    const categoryIndex = categories.findIndex(x => x.id === category.id);
+    const newCategoryRows = categories[categoryIndex].rows.filter(
+      row => rowId !== row.uuid
+    );
+    const newCategory = Object.assign({}, categories[categoryIndex], {
+      rows: newCategoryRows
+    });
+    setCategories(
+      categories.map((oldCategory, i) =>
+        i === categoryIndex ? newCategory : oldCategory
+      )
+    );
+  };
+  const onDeleteCategoryColumn = (
+    category: DataCategory,
+    columnName: string
+  ) => {
+    const categoryIndex = categories.findIndex(x => x.id === category.id);
+    const newCategoryColumns = categories[categoryIndex].columns.filter(
+      column => columnName !== column.name
+    );
+    const newCategory = Object.assign({}, categories[categoryIndex], {
+      columns: newCategoryColumns
+    });
+    setCategories(
+      categories.map((oldCategory, i) =>
+        i === categoryIndex ? newCategory : oldCategory
+      )
+    );
+  };
+
+  const onDeleteCategory = (category: DataCategory) => {
+    setCategories(categories.filter(x => x.id !== category.id));
+  };
+  const onSelectCategory = (category: DataCategory) => {
+    setSelectedCategoryIndex(categories.findIndex(x => x.id === category.id));
+  };
+  const onEditCategory = (category: DataCategory) => {
+    onSelectCategory(category);
+    history.push("/columns");
+  };
+  const onAddCategory = (category: DataCategory) => {
+    setCategories([...categories, category]);
+    onSelectCategory(category);
+  };
   return (
-    <Router>
-      <div className="App">
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open
-          })}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap>
-              Φαρμακείο Πέτρος Γκίνης
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          className={clsx(classes.drawer, {
+    <div className="App">
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open
+        })}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
+            Φαρμακείο Πέτρος Γκίνης
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open
+        })}
+        classes={{
+          paper: clsx({
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open
-          })}
-          classes={{
-            paper: clsx({
-              [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open
-            })
-          }}
-        >
-          <div className={classes.toolbar}>
-            <Typography variant="h6" style={{ flex: 1, marginLeft: "1em" }}>
-              Πλοήγηση
-            </Typography>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
-            <ListItem button component={Link} to="/">
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Κατηγορίες"} />
-            </ListItem>
-            <ListItem button component={Link} to="/columns">
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Στήλες"} />
-            </ListItem>
-            <ListItem button component={Link} to="/data">
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Δεδομένα"} />
-            </ListItem>
-          </List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Switch>
-            <Route path="/columns">
-              <CreateTable onColumnsChanged={columns => setColumns(columns)} />
-            </Route>
-            <Route path="/data">
-              <CreateRecord
-                columns={columns}
-                save={v => setData([...data, { ...v, uuid: uuid() }])}
-              />
-              <div className="table">
-                <DataTable
-                  data={data}
-                  columns={columns}
-                  onDelete={(uuid: string) => {
-                    const t = data.filter(x => x["uuid"] !== uuid);
-                    setData(t);
-                  }}
-                />
-              </div>
-            </Route>
-            <Route path="/">hi</Route>
-          </Switch>
-        </main>
-      </div>
-    </Router>
+          })
+        }}
+      >
+        <div className={classes.toolbar}>
+          <Typography variant="h6" style={{ flex: 1, marginLeft: "1em" }}>
+            Πλοήγηση
+          </Typography>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "rtl" ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton>
+        </div>
+        <Divider />
+        <List>
+          <ListItem button component={Link} to="/">
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Κατηγορίες"} />
+          </ListItem>
+          <ListItem button component={Link} to="/columns">
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Στήλες"} />
+          </ListItem>
+          <ListItem button component={Link} to="/rows">
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Δεδομένα"} />
+          </ListItem>
+        </List>
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Switch>
+          <Route
+            path="/columns"
+            render={() => {
+              if (selectedCategoryIndex !== undefined) {
+                return (
+                  <CreateColumns
+                    onColumnsChanged={columns =>
+                      onUpdateCategoryColumns(
+                        categories[selectedCategoryIndex],
+                        columns
+                      )
+                    }
+                  />
+                );
+              } else {
+                console.log(selectedCategoryIndex);
+                return <Redirect to="/" />;
+              }
+            }}
+          />
+          <Route
+            path="/rows"
+            render={() => {
+              if (
+                selectedCategoryIndex === undefined ||
+                selectedCategoryIndex === null
+              ) {
+                return <Redirect to="/" />;
+              } else {
+                return (
+                  <>
+                    <CreateRecord
+                      columns={categories[selectedCategoryIndex].columns}
+                      save={rows => {
+                        onAddCategoryRow(
+                          categories[selectedCategoryIndex],
+                          rows
+                        );
+                      }}
+                    />
+                    <div className="table">
+                      <DataTable
+                        rows={categories[selectedCategoryIndex].rows}
+                        columns={categories[selectedCategoryIndex].columns}
+                        onDelete={(uuid: string) =>
+                          onDeleteCategoryRow(
+                            categories[selectedCategoryIndex],
+                            uuid
+                          )
+                        }
+                      />
+                    </div>
+                  </>
+                );
+              }
+            }}
+          />
+
+          <Route path="/">
+            <TableList
+              categories={categories}
+              onDelete={onDeleteCategory}
+              onEdit={onEditCategory}
+              onSelect={onSelectCategory}
+              onAdd={onAddCategory}
+            />
+          </Route>
+        </Switch>
+      </main>
+    </div>
   );
 };
 
-export default App;
+const RoutedApp = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default RoutedApp;

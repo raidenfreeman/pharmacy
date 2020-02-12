@@ -6,6 +6,7 @@ import MUIDataTable, {
 } from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import Barcode from "../barcode/Barcode";
+import {RowData} from "../root/App";
 
 export type Column = MUIDataTableColumn & { barcode?: boolean };
 
@@ -37,11 +38,11 @@ const getMuiTheme = () =>
 
 function DataTable({
   columns,
-  data,
+  rows,
   onDelete
 }: {
   columns: Column[];
-  data: Array<{ [key: string]: string }>;
+  rows: Array<RowData>;
   onDelete: (uuid: string) => void;
 }) {
   const options: MUIDataTableOptions = {
@@ -51,7 +52,7 @@ function DataTable({
     rowHover: false,
     onRowsSelect: (rows: any[]) => {
       if (rows.length === 1) {
-        onDelete(data[rows[0].dataIndex]["uuid"]);
+        onDelete(rows[rows[0].dataIndex]["uuid"]);
       }
     },
     filter: false
@@ -68,7 +69,7 @@ function DataTable({
     <MuiThemeProvider theme={getMuiTheme()}>
       <MUIDataTable
         title={"Employee List"}
-        data={data}
+        data={rows}
         columns={renderedColumns}
         options={options}
       />
