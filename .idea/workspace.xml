@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="Blocks">
-      <change afterPath="$PROJECT_DIR$/src/components/login/Login.tsx" afterDir="false" />
+    <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/create-category/CreateCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-category/CreateCategory.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/create-record/CreateRecord.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-record/CreateRecord.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/root/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/root/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table/DataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/DataTable.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +174,7 @@
       <workItem from="1581868711618" duration="2733000" />
       <workItem from="1581930485391" duration="73000" />
       <workItem from="1581968845011" duration="380000" />
-      <workItem from="1582395991478" duration="1840000" />
+      <workItem from="1582395991478" duration="4682000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1581200419667</created>
@@ -266,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581547052692</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="adding firebase">
+      <created>1582398283229</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1582398283229</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,7 +282,8 @@
     <MESSAGE value="Kinda working" />
     <MESSAGE value="Adds on remove column" />
     <MESSAGE value="Adds background colour&#10;&#10;Adds prepopulated columns in column edit page&#10;&#10;Adds info messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds background colour&#10;&#10;Adds prepopulated columns in column edit page&#10;&#10;Adds info messages" />
+    <MESSAGE value="adding firebase" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding firebase" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="190" key="#Inspections" timestamp="1581443382238">
@@ -304,11 +306,11 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581200976841" />
-    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1581871035398">
+    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582398282786">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="1814" y="-951" key="CommitChangelistDialog2/-561.-1080.1920.1080/0.0.1680.1050/1359.-1080.1920.1080@1359.-1080.1920.1080" timestamp="1581406347716" />
-    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1581871035398" />
+    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582398282786" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1581469491898">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -401,9 +403,9 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581468710288" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1581764543094">
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1582400844279">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581764543094" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1582400844279" />
   </component>
 </project>

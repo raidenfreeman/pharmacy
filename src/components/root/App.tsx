@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import "./App.css";
 import DataTable, { Column } from "../table/DataTable";
 import CreateColumns from "../create-columns/CreateColumns";
@@ -33,6 +33,8 @@ import { useStyles } from "./style";
 import TableList from "../table-list/TableList";
 import CreateRecord from "../create-record/CreateRecord";
 import { firestore, app, initializeApp, auth } from "firebase";
+import { Button, Grid } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 export interface DataCategory {
   id: string;
@@ -63,6 +65,7 @@ const App = () => {
   const theme = useTheme();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
+  const [usernameInput, setUsernameInput] = React.useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -74,6 +77,7 @@ const App = () => {
 
   const [categories, setCategories] = useState<Array<DataCategory>>([]);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<number>();
+  const [loginError, setLoginError] = useState<string>("");
 
   const onUpdateCategoryRow = (category: DataCategory, newRow: RowData) => {
     const categoryIndex = categories.findIndex(x => x.id === category.id);
@@ -195,15 +199,28 @@ const App = () => {
   };
   const [user, setUser] = useState();
   const login = () => {
-    const uiConfig = {
-      signInOptions: [
-        {
-          provider: auth.EmailAuthProvider.PROVIDER_ID,
-          signInMethod: auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-          requireDisplayName: false
-        }
-      ]
-    };
+    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (regex.test(usernameInput)) {
+      console.log("login");
+      const uiConfig = {
+        signInOptions: [
+          {
+            provider: auth.EmailAuthProvider.PROVIDER_ID,
+            signInMethod: auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+            requireDisplayName: false
+          }
+        ]
+      };
+    } else {
+      setLoginError("Μη έγκυρο e-mail");
+    }
+  };
+  const onUsernameChanged = (
+    v: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    setLoginError("");
+    setUsernameInput(v.target.value);
   };
   return (
     <div className="App">
@@ -359,7 +376,29 @@ const App = () => {
             />
           </PrivateRoute>
           <Route path="/">
-            <button onClick={login} />
+            <div className="login">
+              {/*<div>*/}
+              <Typography variant="h5" style={{ marginBottom: 80 }}>
+                Συνδεθείτε στην εφαρμογή με τη διεύθυνση email σας
+              </Typography>
+              <TextField
+                type="email"
+                inputProps={{
+                  autocomplete: "email"
+                }}
+                style={{ marginBottom: 40, width: 300 }}
+                value={usernameInput}
+                onChange={onUsernameChanged}
+                error={!!loginError}
+                helperText={loginError}
+                label="e-mail"
+                variant="filled"
+              />
+              <Button onClick={login} variant="contained" color="primary">
+                ΣΥΝΔΕΣΗ
+              </Button>
+              {/*</div>*/}
+            </div>
           </Route>
         </Switch>
       </main>
