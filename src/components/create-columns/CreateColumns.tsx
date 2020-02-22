@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
@@ -75,8 +75,8 @@ function CreateColumns({
             spacing={3}
           >
             {columns.map((c, i) => (
-              <>
-                <Grid container spacing={3} key={c.name} item xs>
+              <Fragment key={c.name}>
+                <Grid container spacing={3} item xs>
                   <Grid item xs>
                     <TextField
                       value={c.label}
@@ -103,14 +103,14 @@ function CreateColumns({
                     <Fab
                       color="primary"
                       onClick={removeColumn(c.name)}
-                      aria-label="add"
+                      aria-label="delete"
                     >
                       <DeleteIcon />
                     </Fab>
                   </Grid>
                 </Grid>
                 <Divider />
-              </>
+              </Fragment>
             ))}
           </Grid>
         )}

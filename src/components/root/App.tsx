@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./App.css";
 import DataTable, { Column } from "../table/DataTable";
 import CreateColumns from "../create-columns/CreateColumns";
@@ -32,6 +32,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { useStyles } from "./style";
 import TableList from "../table-list/TableList";
 import CreateRecord from "../create-record/CreateRecord";
+import { firestore, app, initializeApp, auth } from "firebase";
 
 export interface DataCategory {
   id: string;
@@ -47,6 +48,15 @@ export interface RowData {
 // export interface RowData extends RowInnerData {
 //   uuid: string;
 // }
+initializeApp({
+  apiKey: "AIzaSyDtemDBWVc0C9wzOk1j8kPpGxnHq_FBuac",
+  authDomain: "pharm-1993f.firebaseapp.com",
+  databaseURL: "https://pharm-1993f.firebaseio.com",
+  projectId: "pharm-1993f",
+  storageBucket: "pharm-1993f.appspot.com",
+  messagingSenderId: "306853161109",
+  appId: "1:306853161109:web:ed06674ceec7c3933f539c"
+});
 
 const App = () => {
   const classes = useStyles();
@@ -136,7 +146,7 @@ const App = () => {
   const onDeleteCategoryRow = (category: DataCategory, rowId: string) => {
     const categoryIndex = categories.findIndex(x => x.id === category.id);
     const newCategoryRows = categories[categoryIndex].rows.filter(
-      row => rowId !== row.uuid
+      row => rowId !== row.id
     );
     const newCategory = Object.assign({}, categories[categoryIndex], {
       rows: newCategoryRows
@@ -166,7 +176,9 @@ const App = () => {
   };
 
   const onDeleteCategory = (category: DataCategory) => {
-    setCategories(categories.filter(x => x.id !== category.id));
+    const c = categories.filter(x => x.id !== category.id);
+    console.log(c);
+    setCategories(c);
   };
   const onSelectCategory = (category: DataCategory) => {
     const r = categories.findIndex(x => x.id === category.id);
@@ -180,6 +192,18 @@ const App = () => {
   const onAddCategory = (category: DataCategory) => {
     setCategories([...categories, category]);
     setSelectedCategoryIndex(categories.length);
+  };
+  const [user, setUser] = useState();
+  const login = () => {
+    const uiConfig = {
+      signInOptions: [
+        {
+          provider: auth.EmailAuthProvider.PROVIDER_ID,
+          signInMethod: auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
+          requireDisplayName: false
+        }
+      ]
+    };
   };
   return (
     <div className="App">
@@ -240,6 +264,12 @@ const App = () => {
             </ListItemIcon>
             <ListItemText primary={"Κατηγορίες"} />
           </ListItem>
+          <ListItem button component={Link} to="/login">
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Σύνδεση"} />
+          </ListItem>
           <ListItem button component={Link} to="/columns">
             <ListItemIcon>
               <InboxIcon />
@@ -257,10 +287,13 @@ const App = () => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Switch>
-          <Route
+          <PrivateRoute
             path="/columns"
             render={() => {
-              if (selectedCategoryIndex !== undefined) {
+              if (
+                selectedCategoryIndex !== undefined &&
+                categories.length > 0
+              ) {
                 return (
                   <CreateColumns
                     initialColumns={categories[selectedCategoryIndex].columns}
@@ -273,19 +306,19 @@ const App = () => {
                   />
                 );
               } else {
-                return <Redirect to="/" />;
+                return <Redirect to="/category-list" />;
               }
             }}
           />
-          <Route
+          <PrivateRoute
             path="/rows"
             render={() => {
               if (
-                selectedCategoryIndex === undefined ||
-                selectedCategoryIndex === null
+                selectedCategoryIndex !== undefined &&
+                selectedCategoryIndex !== null &&
+                categories.length > 0 &&
+                categories[selectedCategoryIndex].columns.length > 0
               ) {
-                return <Redirect to="/" />;
-              } else {
                 return (
                   <>
                     <CreateRecord
@@ -311,11 +344,12 @@ const App = () => {
                     </div>
                   </>
                 );
+              } else {
+                return <Redirect to="/category-list" />;
               }
             }}
           />
-
-          <Route path="/">
+          <PrivateRoute path="/category-list">
             <TableList
               categories={categories}
               onDelete={onDeleteCategory}
@@ -323,10 +357,44 @@ const App = () => {
               onSelect={onSelectCategory}
               onAdd={onAddCategory}
             />
+          </PrivateRoute>
+          <Route path="/">
+            <button onClick={login} />
           </Route>
         </Switch>
       </main>
     </div>
+  );
+};
+
+export interface UserData {
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL: string;
+  accessToken: string;
+}
+
+export const CurrentUserContext = React.createContext<UserData | null>(null);
+
+const PrivateRoute = ({ children, ...rest }: any) => {
+  const user = useContext<UserData | null>(CurrentUserContext);
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
   );
 };
 

@@ -50,9 +50,9 @@ function DataTable({
     pagination: false,
     responsive: "scrollFullHeight",
     rowHover: false,
-    onRowsSelect: (rows: any[]) => {
-      if (rows.length === 1) {
-        onDelete(rows[rows[0].dataIndex]["uuid"]);
+    onRowsSelect: (dataTableRows: any[]) => {
+      if (dataTableRows.length === 1) {
+        onDelete(rows[dataTableRows[0].dataIndex].id);
       }
     },
     filter: false

@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import { Grid } from "@material-ui/core";
 import { DataCategory } from "../root/App";
 import { v4 as uuid } from "uuid";
+import { Prompt } from "react-router";
 
 const useStyles = makeStyles({
   root: {
@@ -25,38 +26,53 @@ function CreateCategory({
   const classes = useStyles();
 
   const [name, setName] = useState("");
+  const [isBlocking, setIsBlocking] = useState(false);
   const onSave = () => {
     if (name && name !== "") {
       onCreateCategory({ id: uuid(), columns: [], rows: [], name });
       setName("");
     }
+    setIsBlocking(false);
+  };
+  const onTextChanged = (
+    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
+    const text = e.target.value;
+    setName(text);
+    setIsBlocking(text !== "");
   };
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardContent>
-          <TextField
-            value={name}
-            onChange={(
-              e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-            ) => setName(e.target.value)}
-            label={"Όνομα Κατηγορίας"}
-            variant="outlined"
-          />
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          onClick={onSave}
-          variant="contained"
-          endIcon={<SaveIcon />}
-        >
-          Αποθήκευση
-        </Button>
-      </CardActions>
-    </Card>
+    <>
+      <Prompt
+        when={isBlocking}
+        message={location =>
+          `Δεν έχετε αποθηκεύσει τις αλλαγές σας. Θέλετε να φύγετε;`
+        }
+      />
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardContent>
+            <TextField
+              value={name}
+              onChange={onTextChanged}
+              label={"Όνομα Κατηγορίας"}
+              variant="outlined"
+            />
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button
+            size="small"
+            color="primary"
+            onClick={onSave}
+            variant="contained"
+            endIcon={<SaveIcon />}
+          >
+            Αποθήκευση
+          </Button>
+        </CardActions>
+      </Card>
+    </>
   );
 }
 

@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import { Grid } from "@material-ui/core";
+import { Fab, Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import { Column } from "../table/DataTable";
 import { RowData } from "../root/App";
-
+import { v4 as uuid } from "uuid";
 function CreateRecord({
   columns,
   save
@@ -20,10 +20,11 @@ function CreateRecord({
   const onChangeGenerator = (key: string) => (v: any) =>
     set({ ...s, [key]: v.target.value });
   const onSave = () => {
-    if (Object.keys(s).length !== columns.length) {
+    const numberOfValuesWithData = Object.values(s).filter(x => x).length;
+    if (numberOfValuesWithData !== columns.length) {
       return;
     }
-    save(s);
+    save({ ...s, id: uuid() });
     re.current && re.current.focus();
     set({});
   };
@@ -42,15 +43,9 @@ function CreateRecord({
           </Grid>
         ))}
         <Grid item xs>
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            startIcon={<SaveIcon />}
-            onClick={onSave}
-          >
-            Save
-          </Button>
+          <Fab color="primary" size="small" onClick={onSave}>
+            <SaveIcon />
+          </Fab>
         </Grid>
       </Grid>
     </Paper>

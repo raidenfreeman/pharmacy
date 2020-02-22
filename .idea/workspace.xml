@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/table-list/TableCard.tsx" afterDir="false" />
+    <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="Blocks">
+      <change afterPath="$PROJECT_DIR$/src/components/login/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/JsBarcode.pharmacode.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/JsBarcode.pharmacode.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-category/CreateCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-category/CreateCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/create-record/CreateRecord.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-record/CreateRecord.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/create-table/CreateTable.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-category/CreateCategory.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/create-table/CreateTable.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/create-table/CreateTable.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/root/App.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.test.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/root/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table-list/TableList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table-list/TableList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/DataTable.test.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table/DataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/DataTable.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,7 +171,16 @@
       <workItem from="1581323792618" duration="62000" />
       <workItem from="1581405794199" duration="1130000" />
       <workItem from="1581441116182" duration="2955000" />
-      <workItem from="1581446420748" duration="13072000" />
+      <workItem from="1581446420748" duration="13154000" />
+      <workItem from="1581544348817" duration="4999000" />
+      <workItem from="1581585908501" duration="177000" />
+      <workItem from="1581587299043" duration="239000" />
+      <workItem from="1581598921168" duration="220000" />
+      <workItem from="1581763715937" duration="3328000" />
+      <workItem from="1581868711618" duration="2733000" />
+      <workItem from="1581930485391" duration="73000" />
+      <workItem from="1581968845011" duration="380000" />
+      <workItem from="1582395991478" duration="1840000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1581200419667</created>
@@ -241,7 +245,28 @@
       <option name="project" value="LOCAL" />
       <updated>1581450923619</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Kinda working">
+      <created>1581470547899</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1581470547899</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Adds on remove column">
+      <created>1581544952572</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1581544952572</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Adds background colour&#10;&#10;Adds prepopulated columns in column edit page&#10;&#10;Adds info messages">
+      <created>1581547052692</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1581547052692</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +278,10 @@
     <MESSAGE value="Added create record and create table / columns definition" />
     <MESSAGE value="webstorm config :(" />
     <MESSAGE value="Adds routing and sidebar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds routing and sidebar" />
+    <MESSAGE value="Kinda working" />
+    <MESSAGE value="Adds on remove column" />
+    <MESSAGE value="Adds background colour&#10;&#10;Adds prepopulated columns in column edit page&#10;&#10;Adds info messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds background colour&#10;&#10;Adds prepopulated columns in column edit page&#10;&#10;Adds info messages" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="190" key="#Inspections" timestamp="1581443382238">
@@ -264,10 +292,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581099474718" />
-    <state x="571" y="335" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580939356245">
+    <state x="571" y="335" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581872072028">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="571" y="335" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1580939356245" />
+    <state x="571" y="335" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1581872072028" />
     <state x="399" y="198" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1581194180691">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -276,11 +304,11 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581200976841" />
-    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1581450923403">
+    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1581871035398">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="1814" y="-951" key="CommitChangelistDialog2/-561.-1080.1920.1080/0.0.1680.1050/1359.-1080.1920.1080@1359.-1080.1920.1080" timestamp="1581406347716" />
-    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1581450923403" />
+    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1581871035398" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1581469491898">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -353,29 +381,29 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="1659" height="396" key="GridCell.Tab.3.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581196741223" />
-    <state x="708" y="243" key="RollbackChangesDialog" timestamp="1581242781027">
+    <state x="708" y="243" key="RollbackChangesDialog" timestamp="1581547498877">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="708" y="243" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581242781027" />
+    <state x="708" y="243" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581547498877" />
     <state x="341" y="164" key="SettingsEditor" timestamp="1581194143124">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1581194143124" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1581452905799">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1581547054470">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1581452905799" />
-    <state x="498" y="282" width="837" height="550" key="find.popup" timestamp="1581461331501">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1581547054470" />
+    <state x="498" y="282" width="837" height="550" key="find.popup" timestamp="1581547254376">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="498" y="282" width="837" height="550" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581461331501" />
+    <state x="498" y="282" width="837" height="550" key="find.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581547254376" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1581468710288">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581468710288" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1581469889718">
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1581764543094">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581469889718" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581764543094" />
   </component>
 </project>
