@@ -173,7 +173,7 @@
       <workItem from="1581868711618" duration="2733000" />
       <workItem from="1581930485391" duration="73000" />
       <workItem from="1581968845011" duration="380000" />
-      <workItem from="1582395991478" duration="8712000" />
+      <workItem from="1582395991478" duration="10290000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1581200419667</created>
@@ -280,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582493516514</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Adds email login on firebase">
+      <created>1582494729014</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1582494729014</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,11 +328,11 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581200976841" />
-    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582493516354">
+    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582494728898">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="1814" y="-951" key="CommitChangelistDialog2/-561.-1080.1920.1080/0.0.1680.1050/1359.-1080.1920.1080@1359.-1080.1920.1080" timestamp="1581406347716" />
-    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582493516354" />
+    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582494728898" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1581469491898">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -406,10 +413,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1581194143124" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582402088287">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582494730650">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1582402088287" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1582494730650" />
     <state x="498" y="282" width="837" height="550" key="find.popup" timestamp="1581547254376">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

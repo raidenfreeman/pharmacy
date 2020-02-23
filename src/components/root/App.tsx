@@ -68,6 +68,7 @@ initializeApp({
   messagingSenderId: "306853161109",
   appId: "1:306853161109:web:ed06674ceec7c3933f539c"
 });
+const db = firestore();
 
 const App = () => {
   const classes = useStyles();
@@ -76,7 +77,7 @@ const App = () => {
   const [open, setOpen] = React.useState(false);
   const [usernameInput, setUsernameInput] = React.useState("");
   const [hasEmailBeenSent, setHasEmailBeenSent] = React.useState(false);
-  const [user, setUser] = React.useState<UserData | null>(null);
+  const [currentUser, setCurrentUser] = React.useState<UserData | null>(null);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -193,6 +194,11 @@ const App = () => {
   const onDeleteCategory = (category: DataCategory) => {
     const c = categories.filter(x => x.id !== category.id);
     console.log(c);
+    if (currentUser) {
+      db.collection("categories")
+          .doc(currentUser.uid)
+          .set(c);
+    }
     setCategories(c);
   };
   const onSelectCategory = (category: DataCategory) => {
@@ -205,7 +211,13 @@ const App = () => {
     history.push("/columns");
   };
   const onAddCategory = (category: DataCategory) => {
-    setCategories([...categories, category]);
+    const newCategories = [...categories, category];
+    if (currentUser) {
+      db.collection("categories")
+        .doc(currentUser.uid)
+        .set(newCategories);
+    }
+    setCategories(newCategories);
     setSelectedCategoryIndex(categories.length);
   };
   const login = () => {
@@ -250,15 +262,28 @@ const App = () => {
         // attacks, ask the user to provide the associated email again. For example:
         email = window.prompt("Παρακαλώ εισάγετε το e-mail εγγραφής σας");
       }
+      console.log("dsfsdfsd");
       if (email) {
         // The client SDK will parse the code from the link for you.
         auth()
           .signInWithEmailLink(email, window.location.href)
           .then(function(result: any) {
-            // Clear email from storage.
-            window.localStorage.removeItem("emailForSignIn");
+            const { user } = result;
             console.log(result);
-            setUser(result);
+            // Clear email from storage.
+            if (user) {
+              window.localStorage.removeItem("emailForSignIn");
+              console.log(user);
+              setCurrentUser(user);
+              db.collection("users")
+                .add(user)
+                .then(function(docRef) {
+                  console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function(error) {
+                  console.error("Error adding document: ", error);
+                });
+            }
             // You can access the new user via result.user
             // Additional user info profile not available via:
             // result.additionalUserInfo.profile == null
@@ -277,7 +302,7 @@ const App = () => {
   onStart();
 
   return (
-    <CurrentUserContext.Provider value={user}>
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
         <CssBaseline />
         <AppBar
