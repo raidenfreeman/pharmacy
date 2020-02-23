@@ -47,6 +47,15 @@ export interface RowData {
   [key: string]: string;
 }
 
+const actionCodeSettings = {
+  // URL you want to redirect back to. The domain (www.example.com) for this
+  // URL must be whitelisted in the Firebase Console.
+  // url: "http://localhost:3000/",
+  url: "https://pg-pharmacy.web.app/",
+  // This must be true.
+  handleCodeInApp: true
+};
+
 // export interface RowData extends RowInnerData {
 //   uuid: string;
 // }
@@ -66,6 +75,8 @@ const App = () => {
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const [usernameInput, setUsernameInput] = React.useState("");
+  const [hasEmailBeenSent, setHasEmailBeenSent] = React.useState(false);
+  const [user, setUser] = React.useState<UserData | null>(null);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -197,21 +208,24 @@ const App = () => {
     setCategories([...categories, category]);
     setSelectedCategoryIndex(categories.length);
   };
-  const [user, setUser] = useState();
   const login = () => {
     const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (regex.test(usernameInput)) {
-      console.log("login");
-      const uiConfig = {
-        signInOptions: [
-          {
-            provider: auth.EmailAuthProvider.PROVIDER_ID,
-            signInMethod: auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-            requireDisplayName: false
-          }
-        ]
-      };
+      auth()
+        .sendSignInLinkToEmail(usernameInput, actionCodeSettings)
+        .then(function() {
+          // The link was successfully sent. Inform the user.
+          // Save the email locally so you don't need to ask the user for it again
+          // if they open the link on the same device.
+          setHasEmailBeenSent(true);
+          window.localStorage.setItem("emailForSignIn", usernameInput);
+        })
+        .catch(function(error) {
+          console.log(error);
+          setLoginError("Κάτι πήγε στραβά :(");
+          // Some error occurred, you can inspect the code: error.code
+        });
     } else {
       setLoginError("Μη έγκυρο e-mail");
     }
@@ -222,187 +236,230 @@ const App = () => {
     setLoginError("");
     setUsernameInput(v.target.value);
   };
+  const onStart = () => {
+    // Confirm the link is a sign-in with email link.
+    if (auth().isSignInWithEmailLink(window.location.href)) {
+      // Additional state parameters can also be passed via URL.
+      // This can be used to continue the user's intended action before triggering
+      // the sign-in operation.
+      // Get the email if available. This should be available if the user completes
+      // the flow on the same device where they started it.
+      let email = window.localStorage.getItem("emailForSignIn");
+      if (!email) {
+        // User opened the link on a different device. To prevent session fixation
+        // attacks, ask the user to provide the associated email again. For example:
+        email = window.prompt("Παρακαλώ εισάγετε το e-mail εγγραφής σας");
+      }
+      if (email) {
+        // The client SDK will parse the code from the link for you.
+        auth()
+          .signInWithEmailLink(email, window.location.href)
+          .then(function(result: any) {
+            // Clear email from storage.
+            window.localStorage.removeItem("emailForSignIn");
+            console.log(result);
+            setUser(result);
+            // You can access the new user via result.user
+            // Additional user info profile not available via:
+            // result.additionalUserInfo.profile == null
+            // You can check if the user is new or existing:
+            // result.additionalUserInfo.isNewUser
+          })
+          .catch(function(error) {
+            console.log("signin error");
+            console.log(error);
+            // Some error occurred, you can inspect the code: error.code
+            // Common errors could be invalid email and invalid or expired OTPs.
+          });
+      }
+    }
+  };
+  onStart();
+
   return (
-    <div className="App">
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Φαρμακείο Πέτρος Γκίνης
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open
-        })}
-        classes={{
-          paper: clsx({
+    <CurrentUserContext.Provider value={user}>
+      <div className="App">
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open
+          })}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                [classes.hide]: open
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap>
+              Φαρμακείο Πέτρος Γκίνης
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open
-          })
-        }}
-      >
-        <div className={classes.toolbar}>
-          <Typography variant="h6" style={{ flex: 1, marginLeft: "1em" }}>
-            Πλοήγηση
-          </Typography>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          <ListItem button component={Link} to="/">
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Κατηγορίες"} />
-          </ListItem>
-          <ListItem button component={Link} to="/login">
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Σύνδεση"} />
-          </ListItem>
-          <ListItem button component={Link} to="/columns">
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Στήλες"} />
-          </ListItem>
-          <ListItem button component={Link} to="/rows">
-            <ListItemIcon>
-              <SearchIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Δεδομένα"} />
-          </ListItem>
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Switch>
-          <PrivateRoute
-            path="/columns"
-            render={() => {
-              if (
-                selectedCategoryIndex !== undefined &&
-                categories.length > 0
-              ) {
-                return (
-                  <CreateColumns
-                    initialColumns={categories[selectedCategoryIndex].columns}
-                    onColumnsChanged={columns =>
-                      onUpdateCategoryColumns(
-                        categories[selectedCategoryIndex],
-                        columns
-                      )
-                    }
-                  />
-                );
-              } else {
-                return <Redirect to="/category-list" />;
-              }
-            }}
-          />
-          <PrivateRoute
-            path="/rows"
-            render={() => {
-              if (
-                selectedCategoryIndex !== undefined &&
-                selectedCategoryIndex !== null &&
-                categories.length > 0 &&
-                categories[selectedCategoryIndex].columns.length > 0
-              ) {
-                return (
-                  <>
-                    <CreateRecord
-                      columns={categories[selectedCategoryIndex].columns}
-                      save={rows => {
-                        onAddCategoryRow(
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open
+            })
+          }}
+        >
+          <div className={classes.toolbar}>
+            <Typography variant="h6" style={{ flex: 1, marginLeft: "1em" }}>
+              Πλοήγηση
+            </Typography>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "rtl" ? (
+                <ChevronRightIcon />
+              ) : (
+                <ChevronLeftIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            <ListItem button component={Link} to="/category-list">
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Κατηγορίες"} />
+            </ListItem>
+            <ListItem button component={Link} to="/columns">
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Στήλες"} />
+            </ListItem>
+            <ListItem button component={Link} to="/rows">
+              <ListItemIcon>
+                <SearchIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Δεδομένα"} />
+            </ListItem>
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Switch>
+            <PrivateRoute
+              path="/columns"
+              render={() => {
+                if (
+                  selectedCategoryIndex !== undefined &&
+                  categories.length > 0
+                ) {
+                  return (
+                    <CreateColumns
+                      initialColumns={categories[selectedCategoryIndex].columns}
+                      onColumnsChanged={columns =>
+                        onUpdateCategoryColumns(
                           categories[selectedCategoryIndex],
-                          rows
-                        );
-                      }}
+                          columns
+                        )
+                      }
                     />
-                    <div className="table">
-                      <DataTable
-                        rows={categories[selectedCategoryIndex].rows}
-                        columns={categories[selectedCategoryIndex].columns}
-                        onDelete={(uuid: string) =>
-                          onDeleteCategoryRow(
-                            categories[selectedCategoryIndex],
-                            uuid
-                          )
-                        }
-                      />
-                    </div>
-                  </>
-                );
-              } else {
-                return <Redirect to="/category-list" />;
-              }
-            }}
-          />
-          <PrivateRoute path="/category-list">
-            <TableList
-              categories={categories}
-              onDelete={onDeleteCategory}
-              onEdit={onEditCategory}
-              onSelect={onSelectCategory}
-              onAdd={onAddCategory}
+                  );
+                } else {
+                  return <Redirect to="/category-list" />;
+                }
+              }}
             />
-          </PrivateRoute>
-          <Route path="/">
-            <div className="login">
-              {/*<div>*/}
-              <Typography variant="h5" style={{ marginBottom: 80 }}>
-                Συνδεθείτε στην εφαρμογή με τη διεύθυνση email σας
-              </Typography>
-              <TextField
-                type="email"
-                inputProps={{
-                  autocomplete: "email"
-                }}
-                style={{ marginBottom: 40, width: 300 }}
-                value={usernameInput}
-                onChange={onUsernameChanged}
-                error={!!loginError}
-                helperText={loginError}
-                label="e-mail"
-                variant="filled"
+            <PrivateRoute
+              path="/rows"
+              render={() => {
+                if (
+                  selectedCategoryIndex !== undefined &&
+                  selectedCategoryIndex !== null &&
+                  categories.length > 0 &&
+                  categories[selectedCategoryIndex].columns.length > 0
+                ) {
+                  return (
+                    <>
+                      <CreateRecord
+                        columns={categories[selectedCategoryIndex].columns}
+                        save={rows => {
+                          onAddCategoryRow(
+                            categories[selectedCategoryIndex],
+                            rows
+                          );
+                        }}
+                      />
+                      <div className="table">
+                        <DataTable
+                          rows={categories[selectedCategoryIndex].rows}
+                          columns={categories[selectedCategoryIndex].columns}
+                          onDelete={(uuid: string) =>
+                            onDeleteCategoryRow(
+                              categories[selectedCategoryIndex],
+                              uuid
+                            )
+                          }
+                        />
+                      </div>
+                    </>
+                  );
+                } else {
+                  return <Redirect to="/category-list" />;
+                }
+              }}
+            />
+            <PrivateRoute path="/category-list">
+              <TableList
+                categories={categories}
+                onDelete={onDeleteCategory}
+                onEdit={onEditCategory}
+                onSelect={onSelectCategory}
+                onAdd={onAddCategory}
               />
-              <Button onClick={login} variant="contained" color="primary">
-                ΣΥΝΔΕΣΗ
-              </Button>
-              {/*</div>*/}
-            </div>
-          </Route>
-        </Switch>
-      </main>
-    </div>
+            </PrivateRoute>
+            <Route path="/">
+              <div className="login">
+                {hasEmailBeenSent ? (
+                  <Typography variant="h5" style={{ marginBottom: 80 }}>
+                    Ακολουθήστε το σύνδεσμο στο email σας για να συνδεθείτε στην
+                    εφαρμογή. Μπορεί να έχει σταλεί στα Ανεπιθύμητα.
+                  </Typography>
+                ) : (
+                  <>
+                    <Typography variant="h5" style={{ marginBottom: 80 }}>
+                      Συνδεθείτε στην εφαρμογή με τη διεύθυνση email σας
+                    </Typography>
+                    <TextField
+                      type="email"
+                      inputProps={{
+                        autoComplete: "email"
+                      }}
+                      style={{ marginBottom: 40, width: 300 }}
+                      value={usernameInput}
+                      onChange={onUsernameChanged}
+                      error={!!loginError}
+                      helperText={loginError}
+                      label="e-mail"
+                      variant="filled"
+                    />
+                    <Button onClick={login} variant="contained" color="primary">
+                      ΣΥΝΔΕΣΗ
+                    </Button>
+                  </>
+                )}
+              </div>
+            </Route>
+          </Switch>
+        </main>
+      </div>
+    </CurrentUserContext.Provider>
   );
 };
 
@@ -410,8 +467,6 @@ export interface UserData {
   uid: string;
   email: string;
   displayName: string;
-  photoURL: string;
-  accessToken: string;
 }
 
 export const CurrentUserContext = React.createContext<UserData | null>(null);

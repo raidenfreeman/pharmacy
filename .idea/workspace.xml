@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/root/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/root/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +173,7 @@
       <workItem from="1581868711618" duration="2733000" />
       <workItem from="1581930485391" duration="73000" />
       <workItem from="1581968845011" duration="380000" />
-      <workItem from="1582395991478" duration="4682000" />
+      <workItem from="1582395991478" duration="8712000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1581200419667</created>
@@ -267,7 +266,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582398283229</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Adds email login ui">
+      <created>1582402084165</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1582402084165</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Adds email login on firebase">
+      <created>1582493516514</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1582493516514</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +296,9 @@
     <MESSAGE value="Adds on remove column" />
     <MESSAGE value="Adds background colour&#10;&#10;Adds prepopulated columns in column edit page&#10;&#10;Adds info messages" />
     <MESSAGE value="adding firebase" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding firebase" />
+    <MESSAGE value="Adds email login ui" />
+    <MESSAGE value="Adds email login on firebase" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds email login on firebase" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="190" key="#Inspections" timestamp="1581443382238">
@@ -306,11 +321,11 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581200976841" />
-    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582398282786">
+    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582493516354">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="1814" y="-951" key="CommitChangelistDialog2/-561.-1080.1920.1080/0.0.1680.1050/1359.-1080.1920.1080@1359.-1080.1920.1080" timestamp="1581406347716" />
-    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582398282786" />
+    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582493516354" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1581469491898">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -391,10 +406,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1581194143124" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1581547054470">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582402088287">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1581547054470" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1582402088287" />
     <state x="498" y="282" width="837" height="550" key="find.popup" timestamp="1581547254376">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
