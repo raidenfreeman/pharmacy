@@ -196,8 +196,8 @@ const App = () => {
     console.log(c);
     if (currentUser) {
       db.collection("categories")
-          .doc(currentUser.uid)
-          .set(c);
+        .doc(currentUser.uid)
+        .set({ categories: c });
     }
     setCategories(c);
   };
@@ -215,7 +215,7 @@ const App = () => {
     if (currentUser) {
       db.collection("categories")
         .doc(currentUser.uid)
-        .set(newCategories);
+        .set({ categories: newCategories });
     }
     setCategories(newCategories);
     setSelectedCategoryIndex(categories.length);
@@ -251,6 +251,7 @@ const App = () => {
   const onStart = () => {
     // Confirm the link is a sign-in with email link.
     if (auth().isSignInWithEmailLink(window.location.href)) {
+      setRunOnce(true);
       // Additional state parameters can also be passed via URL.
       // This can be used to continue the user's intended action before triggering
       // the sign-in operation.
@@ -262,7 +263,6 @@ const App = () => {
         // attacks, ask the user to provide the associated email again. For example:
         email = window.prompt("Παρακαλώ εισάγετε το e-mail εγγραφής σας");
       }
-      console.log("dsfsdfsd");
       if (email) {
         // The client SDK will parse the code from the link for you.
         auth()
@@ -275,14 +275,6 @@ const App = () => {
               window.localStorage.removeItem("emailForSignIn");
               console.log(user);
               setCurrentUser(user);
-              db.collection("users")
-                .add(user)
-                .then(function(docRef) {
-                  console.log("Document written with ID: ", docRef.id);
-                })
-                .catch(function(error) {
-                  console.error("Error adding document: ", error);
-                });
             }
             // You can access the new user via result.user
             // Additional user info profile not available via:
@@ -299,7 +291,10 @@ const App = () => {
       }
     }
   };
-  onStart();
+  const [runOnce, setRunOnce] = useState(false);
+  if (!runOnce) {
+    onStart();
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -378,68 +373,50 @@ const App = () => {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>
-            <PrivateRoute
-              path="/columns"
-              render={() => {
-                if (
-                  selectedCategoryIndex !== undefined &&
-                  categories.length > 0
-                ) {
-                  return (
-                    <CreateColumns
-                      initialColumns={categories[selectedCategoryIndex].columns}
-                      onColumnsChanged={columns =>
-                        onUpdateCategoryColumns(
+            <PrivateRoute path="/columns">
+              {selectedCategoryIndex !== undefined && categories.length > 0 ? (
+                <CreateColumns
+                  initialColumns={categories[selectedCategoryIndex].columns}
+                  onColumnsChanged={columns =>
+                    onUpdateCategoryColumns(
+                      categories[selectedCategoryIndex],
+                      columns
+                    )
+                  }
+                />
+              ) : (
+                <Redirect to="/category-list" />
+              )}
+            </PrivateRoute>
+            <PrivateRoute path="/rows">
+              {selectedCategoryIndex !== undefined &&
+              selectedCategoryIndex !== null &&
+              categories.length > 0 &&
+              categories[selectedCategoryIndex].columns.length > 0 ? (
+                <>
+                  <CreateRecord
+                    columns={categories[selectedCategoryIndex].columns}
+                    save={rows => {
+                      onAddCategoryRow(categories[selectedCategoryIndex], rows);
+                    }}
+                  />
+                  <div className="table">
+                    <DataTable
+                      rows={categories[selectedCategoryIndex].rows}
+                      columns={categories[selectedCategoryIndex].columns}
+                      onDelete={(uuid: string) =>
+                        onDeleteCategoryRow(
                           categories[selectedCategoryIndex],
-                          columns
+                          uuid
                         )
                       }
                     />
-                  );
-                } else {
-                  return <Redirect to="/category-list" />;
-                }
-              }}
-            />
-            <PrivateRoute
-              path="/rows"
-              render={() => {
-                if (
-                  selectedCategoryIndex !== undefined &&
-                  selectedCategoryIndex !== null &&
-                  categories.length > 0 &&
-                  categories[selectedCategoryIndex].columns.length > 0
-                ) {
-                  return (
-                    <>
-                      <CreateRecord
-                        columns={categories[selectedCategoryIndex].columns}
-                        save={rows => {
-                          onAddCategoryRow(
-                            categories[selectedCategoryIndex],
-                            rows
-                          );
-                        }}
-                      />
-                      <div className="table">
-                        <DataTable
-                          rows={categories[selectedCategoryIndex].rows}
-                          columns={categories[selectedCategoryIndex].columns}
-                          onDelete={(uuid: string) =>
-                            onDeleteCategoryRow(
-                              categories[selectedCategoryIndex],
-                              uuid
-                            )
-                          }
-                        />
-                      </div>
-                    </>
-                  );
-                } else {
-                  return <Redirect to="/category-list" />;
-                }
-              }}
-            />
+                  </div>
+                </>
+              ) : (
+                <Redirect to="/category-list" />
+              )}
+            </PrivateRoute>
             <PrivateRoute path="/category-list">
               <TableList
                 categories={categories}
@@ -449,38 +426,52 @@ const App = () => {
                 onAdd={onAddCategory}
               />
             </PrivateRoute>
-            <Route path="/">
-              <div className="login">
-                {hasEmailBeenSent ? (
-                  <Typography variant="h5" style={{ marginBottom: 80 }}>
-                    Ακολουθήστε το σύνδεσμο στο email σας για να συνδεθείτε στην
-                    εφαρμογή. Μπορεί να έχει σταλεί στα Ανεπιθύμητα.
-                  </Typography>
-                ) : (
-                  <>
-                    <Typography variant="h5" style={{ marginBottom: 80 }}>
-                      Συνδεθείτε στην εφαρμογή με τη διεύθυνση email σας
-                    </Typography>
-                    <TextField
-                      type="email"
-                      inputProps={{
-                        autoComplete: "email"
-                      }}
-                      style={{ marginBottom: 40, width: 300 }}
-                      value={usernameInput}
-                      onChange={onUsernameChanged}
-                      error={!!loginError}
-                      helperText={loginError}
-                      label="e-mail"
-                      variant="filled"
-                    />
-                    <Button onClick={login} variant="contained" color="primary">
-                      ΣΥΝΔΕΣΗ
-                    </Button>
-                  </>
-                )}
-              </div>
-            </Route>
+            <Route
+              path="/"
+              render={() => {
+                if (!currentUser) {
+                  return (
+                    <div className="login">
+                      {hasEmailBeenSent ? (
+                        <Typography variant="h5" style={{ marginBottom: 80 }}>
+                          Ακολουθήστε το σύνδεσμο στο email σας για να
+                          συνδεθείτε στην εφαρμογή. Μπορεί να έχει σταλεί στα
+                          Ανεπιθύμητα.
+                        </Typography>
+                      ) : (
+                        <>
+                          <Typography variant="h5" style={{ marginBottom: 80 }}>
+                            Συνδεθείτε στην εφαρμογή με τη διεύθυνση email σας
+                          </Typography>
+                          <TextField
+                            type="email"
+                            inputProps={{
+                              autoComplete: "email"
+                            }}
+                            style={{ marginBottom: 40, width: 300 }}
+                            value={usernameInput}
+                            onChange={onUsernameChanged}
+                            error={!!loginError}
+                            helperText={loginError}
+                            label="e-mail"
+                            variant="filled"
+                          />
+                          <Button
+                            onClick={login}
+                            variant="contained"
+                            color="primary"
+                          >
+                            ΣΥΝΔΕΣΗ
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  );
+                } else {
+                  return <Redirect to="/category-list" />;
+                }
+              }}
+            />
           </Switch>
         </main>
       </div>
@@ -507,7 +498,7 @@ const PrivateRoute = ({ children, ...rest }: any) => {
         ) : (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: "/",
               state: { from: location }
             }}
           />
