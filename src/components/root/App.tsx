@@ -50,8 +50,8 @@ export interface RowData {
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be whitelisted in the Firebase Console.
-  // url: "http://localhost:3000/",
-  url: "https://pg-pharmacy.web.app/",
+  url: "http://localhost:3000/",
+  // url: "https://pg-pharmacy.web.app/",
   // This must be true.
   handleCodeInApp: true
 };
@@ -307,69 +307,73 @@ const App = () => {
           })}
         >
           <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, {
-                [classes.hide]: open
-              })}
-            >
-              <MenuIcon />
-            </IconButton>
+            {currentUser && (
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={clsx(classes.menuButton, {
+                  [classes.hide]: open
+                })}
+              >
+                <MenuIcon />
+              </IconButton>
+            )}
             <Typography variant="h6" noWrap>
               Φαρμακείο Πέτρος Γκίνης
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant="permanent"
-          className={clsx(classes.drawer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open
-          })}
-          classes={{
-            paper: clsx({
+        {currentUser && (
+          <Drawer
+            variant="permanent"
+            className={clsx(classes.drawer, {
               [classes.drawerOpen]: open,
               [classes.drawerClose]: !open
-            })
-          }}
-        >
-          <div className={classes.toolbar}>
-            <Typography variant="h6" style={{ flex: 1, marginLeft: "1em" }}>
-              Πλοήγηση
-            </Typography>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
-            <ListItem button component={Link} to="/category-list">
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Κατηγορίες"} />
-            </ListItem>
-            <ListItem button component={Link} to="/columns">
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Στήλες"} />
-            </ListItem>
-            <ListItem button component={Link} to="/rows">
-              <ListItemIcon>
-                <SearchIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Δεδομένα"} />
-            </ListItem>
-          </List>
-        </Drawer>
+            })}
+            classes={{
+              paper: clsx({
+                [classes.drawerOpen]: open,
+                [classes.drawerClose]: !open
+              })
+            }}
+          >
+            <div className={classes.toolbar}>
+              <Typography variant="h6" style={{ flex: 1, marginLeft: "1em" }}>
+                Πλοήγηση
+              </Typography>
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === "rtl" ? (
+                  <ChevronRightIcon />
+                ) : (
+                  <ChevronLeftIcon />
+                )}
+              </IconButton>
+            </div>
+            <Divider />
+            <List>
+              <ListItem button component={Link} to="/category-list">
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Κατηγορίες"} />
+              </ListItem>
+              <ListItem button component={Link} to="/columns">
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Στήλες"} />
+              </ListItem>
+              <ListItem button component={Link} to="/rows">
+                <ListItemIcon>
+                  <SearchIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Δεδομένα"} />
+              </ListItem>
+            </List>
+          </Drawer>
+        )}
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Switch>
