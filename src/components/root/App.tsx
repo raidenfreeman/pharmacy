@@ -80,6 +80,13 @@ const App = () => {
   const [usernameInput, setUsernameInput] = React.useState("");
   const [hasEmailBeenSent, setHasEmailBeenSent] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState<UserData | null>(null);
+  function sendToFirestore(dataCategories: DataCategory[]) {
+    if (currentUser) {
+      db.collection("categories")
+        .doc(currentUser.uid)
+        .set({ userCategories: dataCategories });
+    }
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -93,41 +100,15 @@ const App = () => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<number>();
   const [loginError, setLoginError] = useState<string>("");
 
-  const onUpdateCategoryRow = (category: DataCategory, newRow: RowData) => {
-    const categoryIndex = categories.findIndex(x => x.id === category.id);
-    const newCategoryRows = [...categories[categoryIndex].rows, newRow];
-    const newCategory = Object.assign({}, categories[categoryIndex], {
-      rows: newCategoryRows
-    });
-    setCategories(
-      categories.map((oldCategory, i) =>
-        i === categoryIndex ? newCategory : oldCategory
-      )
-    );
-  };
-  const onUpdateCategoryRows = (
-    category: DataCategory,
-    newRows: Array<RowData>
-  ) => {
-    const categoryIndex = categories.findIndex(x => x.id === category.id);
-    const newCategory = Object.assign({}, categories[categoryIndex], {
-      rows: newRows
-    });
-    setCategories(
-      categories.map((oldCategory, i) =>
-        i === categoryIndex ? newCategory : oldCategory
-      )
-    );
-  };
   const onAddCategoryRow = (category: DataCategory, newRow: RowData) => {
     const newCategory = Object.assign({}, category, {
       rows: [...category.rows, newRow]
     });
-    setCategories(
-      categories.map(oldCategory =>
-        oldCategory.id === category.id ? newCategory : oldCategory
-      )
+    const newCategories = categories.map(oldCategory =>
+      oldCategory.id === category.id ? newCategory : oldCategory
     );
+    setCategories(newCategories);
+    sendToFirestore(newCategories);
   };
   const onUpdateCategoryColumns = (
     category: DataCategory,
@@ -137,29 +118,11 @@ const App = () => {
     const newCategory = Object.assign({}, categories[categoryIndex], {
       columns: newColumns
     });
-    setCategories(
-      categories.map((oldCategory, i) =>
-        i === categoryIndex ? newCategory : oldCategory
-      )
+    const newCategories = categories.map((oldCategory, i) =>
+      i === categoryIndex ? newCategory : oldCategory
     );
-  };
-  const onUpdateCategoryColumn = (
-    category: DataCategory,
-    newColumn: Column
-  ) => {
-    const categoryIndex = categories.findIndex(x => x.id === category.id);
-    const newCategoryColumns = [
-      ...categories[categoryIndex].columns,
-      newColumn
-    ];
-    const newCategory = Object.assign({}, categories[categoryIndex], {
-      columns: newColumn
-    });
-    setCategories(
-      categories.map((oldCategory, i) =>
-        i === categoryIndex ? newCategory : oldCategory
-      )
-    );
+    setCategories(newCategories);
+    sendToFirestore(newCategories);
   };
   const onDeleteCategoryRow = (category: DataCategory, rowId: string) => {
     const categoryIndex = categories.findIndex(x => x.id === category.id);
@@ -169,38 +132,17 @@ const App = () => {
     const newCategory = Object.assign({}, categories[categoryIndex], {
       rows: newCategoryRows
     });
-    setCategories(
-      categories.map((oldCategory, i) =>
-        i === categoryIndex ? newCategory : oldCategory
-      )
+    const newCategories = categories.map((oldCategory, i) =>
+      i === categoryIndex ? newCategory : oldCategory
     );
-  };
-  const onDeleteCategoryColumn = (
-    category: DataCategory,
-    columnName: string
-  ) => {
-    const categoryIndex = categories.findIndex(x => x.id === category.id);
-    const newCategoryColumns = categories[categoryIndex].columns.filter(
-      column => columnName !== column.name
-    );
-    const newCategory = Object.assign({}, categories[categoryIndex], {
-      columns: newCategoryColumns
-    });
-    setCategories(
-      categories.map((oldCategory, i) =>
-        i === categoryIndex ? newCategory : oldCategory
-      )
-    );
+    setCategories(newCategories);
+    sendToFirestore(newCategories);
   };
 
   const onDeleteCategory = (category: DataCategory) => {
     const c = categories.filter(x => x.id !== category.id);
     console.log(c);
-    if (currentUser) {
-      db.collection("categories")
-        .doc(currentUser.uid)
-        .set({ categories: c });
-    }
+    sendToFirestore(c);
     setCategories(c);
   };
   const onSelectCategory = (category: DataCategory) => {
@@ -214,12 +156,8 @@ const App = () => {
   };
   const onAddCategory = (category: DataCategory) => {
     const newCategories = [...categories, category];
-    if (currentUser) {
-      db.collection("categories")
-        .doc(currentUser.uid)
-        .set({ categories: newCategories });
-    }
     setCategories(newCategories);
+    sendToFirestore(newCategories);
     setSelectedCategoryIndex(categories.length);
   };
   const login = () => {
@@ -257,6 +195,16 @@ const App = () => {
       console.log(user);
       if (user) {
         setCurrentUser(user as any);
+
+        db.collection("categories")
+          .doc(user.uid)
+          .get()
+          .then(doc => {
+            console.log("setting");
+            if (doc.exists) {
+              setCategories((doc.data() as any).userCategories);
+            }
+          });
       }
     });
     if (auth().isSignInWithEmailLink(window.location.href)) {

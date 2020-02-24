@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/root/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,16 +51,16 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/components/root" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/barcode" />
       <recent name="$PROJECT_DIR$/src/components/create-record" />
       <recent name="$PROJECT_DIR$/src/components/table-list" />
       <recent name="$PROJECT_DIR$/src/components/table" />
       <recent name="$PROJECT_DIR$/src/components/create-table" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components" />
-      <recent name="$PROJECT_DIR$/src/components/root" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.renders with an invalid barcode">
@@ -176,7 +176,7 @@
       <workItem from="1581968845011" duration="380000" />
       <workItem from="1582395991478" duration="11767000" />
       <workItem from="1582533123597" duration="185000" />
-      <workItem from="1582579058419" duration="1517000" />
+      <workItem from="1582579058419" duration="3294000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1581200419667</created>
@@ -318,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582580346299</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Added user persistence">
+      <created>1582581341012</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1582581341012</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +347,8 @@
     <MESSAGE value="Firestore working and redirects fixed" />
     <MESSAGE value="Hides bar when not logged in" />
     <MESSAGE value="Uses env variable for redirect url" />
-    <option name="LAST_COMMIT_MESSAGE" value="Uses env variable for redirect url" />
+    <MESSAGE value="Added user persistence" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added user persistence" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="190" key="#Inspections" timestamp="1581443382238">
@@ -363,11 +371,11 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581200976841" />
-    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582580346155">
+    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582581340880">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="1814" y="-951" key="CommitChangelistDialog2/-561.-1080.1920.1080/0.0.1680.1050/1359.-1080.1920.1080@1359.-1080.1920.1080" timestamp="1581406347716" />
-    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582580346155" />
+    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582581340880" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1581469491898">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -448,10 +456,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1581194143124" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582580348224">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582581342951">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1582580348224" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1582581342951" />
     <state x="498" y="282" width="837" height="550" key="find.popup" timestamp="1581547254376">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -460,9 +468,9 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581468710288" />
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1582580183318">
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1582582043328">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1582580183318" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1582582043328" />
   </component>
 </project>

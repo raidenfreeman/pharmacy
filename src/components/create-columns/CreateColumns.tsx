@@ -15,6 +15,7 @@ import {
 import { v4 as uuid } from "uuid";
 import { Column } from "../table/DataTable";
 import TextField from "@material-ui/core/TextField";
+import { useHistory } from "react-router-dom";
 function CreateColumns({
   onColumnsChanged,
   initialColumns
@@ -23,6 +24,7 @@ function CreateColumns({
   initialColumns?: Array<Column>;
 }) {
   const [columns, setColumns] = useState<Array<Column>>(initialColumns || []);
+  const history = useHistory();
   const addColumn = () => {
     setColumns([...columns, { name: uuid(), label: "" }]);
   };
@@ -45,7 +47,10 @@ function CreateColumns({
       )
     );
   };
-  const save = () => onColumnsChanged(columns.filter(x => x.label !== ""));
+  const save = () => {
+    onColumnsChanged(columns.filter(x => x.label !== ""));
+    history.push("rows");
+  };
   return (
     <>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
