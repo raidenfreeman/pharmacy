@@ -50,8 +50,10 @@ export interface RowData {
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be whitelisted in the Firebase Console.
-  url: "http://localhost:3000/",
-  // url: "https://pg-pharmacy.web.app/",
+  url:
+    process.env.NODE_ENV === "production"
+      ? "https://pg-pharmacy.web.app/"
+      : "http://localhost:3000/",
   // This must be true.
   handleCodeInApp: true
 };
