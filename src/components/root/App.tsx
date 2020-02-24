@@ -252,8 +252,14 @@ const App = () => {
   };
   const onStart = () => {
     // Confirm the link is a sign-in with email link.
+    setRunOnce(true);
+    auth().onAuthStateChanged(user => {
+      console.log(user);
+      if (user) {
+        setCurrentUser(user as any);
+      }
+    });
     if (auth().isSignInWithEmailLink(window.location.href)) {
-      setRunOnce(true);
       // Additional state parameters can also be passed via URL.
       // This can be used to continue the user's intended action before triggering
       // the sign-in operation.
