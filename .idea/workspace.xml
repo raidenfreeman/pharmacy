@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="">
+    <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="Gets data from firestore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/root/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/table/DataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/DataTable.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +176,7 @@
       <workItem from="1581968845011" duration="380000" />
       <workItem from="1582395991478" duration="11767000" />
       <workItem from="1582533123597" duration="185000" />
-      <workItem from="1582579058419" duration="3294000" />
+      <workItem from="1582579058419" duration="8099000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1581200419667</created>
@@ -325,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582581341012</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Gets data from firestore">
+      <created>1582585920486</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1582585920486</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +355,8 @@
     <MESSAGE value="Hides bar when not logged in" />
     <MESSAGE value="Uses env variable for redirect url" />
     <MESSAGE value="Added user persistence" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added user persistence" />
+    <MESSAGE value="Gets data from firestore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gets data from firestore" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="190" key="#Inspections" timestamp="1581443382238">
@@ -371,11 +379,11 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581200976841" />
-    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582581340880">
+    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582590320406">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="1814" y="-951" key="CommitChangelistDialog2/-561.-1080.1920.1080/0.0.1680.1050/1359.-1080.1920.1080@1359.-1080.1920.1080" timestamp="1581406347716" />
-    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582581340880" />
+    <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582590320406" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1581469491898">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -456,10 +464,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1581194143124" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582581342951">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582585922239">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1582581342951" />
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1582585922239" />
     <state x="498" y="282" width="837" height="550" key="find.popup" timestamp="1581547254376">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

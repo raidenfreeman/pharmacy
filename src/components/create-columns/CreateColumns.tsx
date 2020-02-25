@@ -47,6 +47,13 @@ function CreateColumns({
       )
     );
   };
+  const onToggleChangeSum = (name: string) => (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setColumns(
+      columns.map(x => (x.name === name ? { ...x, sum: e.target.checked } : x))
+    );
+  };
   const save = () => {
     onColumnsChanged(columns.filter(x => x.label !== ""));
     history.push("rows");
@@ -102,6 +109,19 @@ function CreateColumns({
                         />
                       }
                       label="Barcode"
+                    />
+                  </Grid>
+                  <Grid item xs>
+                    <FormControlLabel
+                      control={
+                        <Switch
+                          checked={c.sum || false}
+                          onChange={onToggleChangeSum(c.name)}
+                          color="primary"
+                          inputProps={{ "aria-label": "primary checkbox" }}
+                        />
+                      }
+                      label="Σύνολο"
                     />
                   </Grid>
                   <Grid item xs={1}>
