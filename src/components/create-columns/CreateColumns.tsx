@@ -94,7 +94,7 @@ function CreateColumns({
                       value={c.label}
                       onChange={onLabelChange(c.name)}
                       // ref={input => (d[c.name] = input)}
-                      label={"Name"}
+                      label={"Όνομα Στήλης"}
                       variant="outlined"
                     />
                   </Grid>

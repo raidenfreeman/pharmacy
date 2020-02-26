@@ -4,9 +4,7 @@
     <list default="true" id="c31be97d-0e80-4c38-b630-0dde7a91963b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/root/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/root/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table-list/TableCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table-list/TableCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table-list/TableList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table-list/TableList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/create-columns/CreateColumns.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/table/DataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/DataTable.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +180,8 @@
       <workItem from="1582579058419" duration="8257000" />
       <workItem from="1582660001842" duration="338000" />
       <workItem from="1582705090625" duration="1411000" />
-      <workItem from="1582707693999" duration="732000" />
+      <workItem from="1582707693999" duration="844000" />
+      <workItem from="1582708725820" duration="484000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1581200419667</created>
@@ -345,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582590926238</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Adds category display on data-table&#10;&#10;Adds selected category styling">
+      <created>1582708704573</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1582708704573</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +376,8 @@
     <MESSAGE value="Added user persistence" />
     <MESSAGE value="Gets data from firestore" />
     <MESSAGE value="Adds sums" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds sums" />
+    <MESSAGE value="Adds category display on data-table&#10;&#10;Adds selected category styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds category display on data-table&#10;&#10;Adds selected category styling" />
   </component>
   <component name="WindowStateProjectService">
     <state x="440" y="190" key="#Inspections" timestamp="1581443382238">
@@ -393,9 +400,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="578" y="279" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581200976841" />
-    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582590926062">
+    <state x="398" y="125" key="CommitChangelistDialog2" timestamp="1582709288615">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state x="398" y="125" key="CommitChangelistDialog2/-1011.-1080.1920.1080/0.0.1680.1050/909.-1080.1920.1080@0.0.1680.1050" timestamp="1582709288615" />
     <state x="1814" y="-951" key="CommitChangelistDialog2/-561.-1080.1920.1080/0.0.1680.1050/1359.-1080.1920.1080@1359.-1080.1920.1080" timestamp="1581406347716" />
     <state x="398" y="125" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1582590926062" />
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1581469491898">
@@ -470,17 +478,19 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state width="1659" height="396" key="GridCell.Tab.3.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581196741223" />
-    <state x="708" y="243" key="RollbackChangesDialog" timestamp="1581547498877">
+    <state x="708" y="243" key="RollbackChangesDialog" timestamp="1582709328570">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state x="708" y="243" key="RollbackChangesDialog/-1011.-1080.1920.1080/0.0.1680.1050/909.-1080.1920.1080@0.0.1680.1050" timestamp="1582709328570" />
     <state x="708" y="243" key="RollbackChangesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1581547498877" />
     <state x="341" y="164" key="SettingsEditor" timestamp="1581194143124">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1581194143124" />
-    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582590927905">
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2" timestamp="1582708706920">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state x="440" y="265" key="Vcs.Push.Dialog.v2/-1011.-1080.1920.1080/0.0.1680.1050/909.-1080.1920.1080@0.0.1680.1050" timestamp="1582708706920" />
     <state x="440" y="265" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1582590927905" />
     <state x="498" y="282" width="837" height="550" key="find.popup" timestamp="1581547254376">
       <screen x="0" y="0" width="1680" height="1050" />

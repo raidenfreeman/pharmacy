@@ -65,7 +65,40 @@ function DataTable({
         onDelete(rows[dataTableRows[0].dataIndex].id);
       }
     },
-    filter: false
+    filter: false,
+    textLabels: {
+      body: {
+        noMatch: "Δεν βρέθηκαν στοιχεία",
+        toolTip: "Ταξινόμηση",
+      },
+      pagination: {
+        next: "Next Page",
+        previous: "Previous Page",
+        rowsPerPage: "Rows per page:",
+        displayRows: "of",
+      },
+      toolbar: {
+        search: "Αναζήτηση",
+        downloadCsv: "Κατέβασμα CSV (για Excel)",
+        print: "Εκτύπωση",
+        viewColumns: "Προβολή Στηλών",
+        filterTable: "Φίλτρα",
+      },
+      filter: {
+        all: "Όλα",
+        title: "ΦΙΛΤΡΑ",
+        reset: "ΕΠΑΝΑΦΟΡΑ",
+      },
+      viewColumns: {
+        title: "Εμφάνιση Στηλών",
+        titleAria: "Εμφάνιση/Απόκρυψη Στηλών",
+      },
+      selectedRows: {
+        text: "στήλη(-ες) επιλέχθηκαν",
+        delete: "Διαγραφή",
+        deleteAria: "Διαγραφή Επιλεγμένων Στηλών",
+      },
+    }
   };
   const customBodyRender = (value: string) => <Barcode value={value} />;
 
