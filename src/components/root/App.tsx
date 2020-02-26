@@ -362,6 +362,7 @@ const App = () => {
                   />
                   <div className="table">
                     <DataTable
+                      title={categories[selectedCategoryIndex].name}
                       rows={categories[selectedCategoryIndex].rows}
                       columns={categories[selectedCategoryIndex].columns}
                       onDelete={(uuid: string) =>
@@ -379,6 +380,7 @@ const App = () => {
             </PrivateRoute>
             <PrivateRoute path="/category-list">
               <TableList
+                selectedCategoryIndex={selectedCategoryIndex}
                 categories={categories}
                 onDelete={onDeleteCategory}
                 onEdit={onEditCategory}

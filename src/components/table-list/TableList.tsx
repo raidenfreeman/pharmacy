@@ -5,18 +5,21 @@ import TableCard from "./TableCard";
 import CreateCategory from "../create-category/CreateCategory";
 
 function TableList({
+  selectedCategoryIndex,
   categories,
   onDelete,
   onEdit,
   onSelect,
   onAdd
 }: {
+  selectedCategoryIndex?: number;
   categories: DataCategory[];
   onDelete: (category: DataCategory) => void;
   onEdit: (category: DataCategory) => void;
   onSelect: (category: DataCategory) => void;
   onAdd: (category: DataCategory) => void;
 }) {
+  console.log('list',selectedCategoryIndex)
   return (
     <>
       {!categories ||
@@ -28,9 +31,10 @@ function TableList({
       <Grid container spacing={3}>
         {categories &&
           categories.length > 0 &&
-          categories.map(category => (
+          categories.map((category, index) => (
             <Grid key={category.id} item xs>
               <TableCard
+                isSelected={index === selectedCategoryIndex}
                 category={category}
                 onEdit={() => onEdit(category)}
                 onSelect={() => onSelect(category)}

@@ -28,21 +28,28 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140
+  },
+  selected: {
+    backgroundColor: "#ffa07a99"
   }
 });
 
 export default function TableCard({
+  isSelected,
   category,
   onEdit,
   onSelect,
   onDelete
 }: {
+  isSelected: boolean;
   category: DataCategory;
   onEdit: () => void;
   onSelect: () => void;
   onDelete: () => void;
 }) {
-  const classes = useStyles();
+  console.log("card", isSelected);
+  const styles = useStyles();
+  const classes = styles.root + (isSelected ? " " + styles.selected : "");
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -52,7 +59,7 @@ export default function TableCard({
     setOpen(false);
   };
   return (
-    <Card className={classes.root}>
+    <Card className={classes}>
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -83,15 +90,17 @@ export default function TableCard({
         >
           Επεξεργασία
         </Button>
-        <Button
-          size="small"
-          color="primary"
-          onClick={onSelect}
-          variant="contained"
-          endIcon={<CheckIcon />}
-        >
-          Επιλογή
-        </Button>
+        {!isSelected && (
+          <Button
+            size="small"
+            color="primary"
+            onClick={onSelect}
+            variant="contained"
+            endIcon={<CheckIcon />}
+          >
+            Επιλογή
+          </Button>
+        )}
         <Button
           size="small"
           color="secondary"

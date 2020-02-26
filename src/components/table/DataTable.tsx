@@ -46,11 +46,13 @@ const getMuiTheme = () =>
 function DataTable({
   columns,
   rows,
-  onDelete
+  onDelete,
+  title
 }: {
   columns: Column[];
   rows: Array<RowData>;
   onDelete: (uuid: string) => void;
+  title: string;
 }) {
   const options: MUIDataTableOptions = {
     selectableRowsHeader: false,
@@ -97,7 +99,7 @@ function DataTable({
     <>
       <MuiThemeProvider theme={getMuiTheme()}>
         <MUIDataTable
-          title={"Employee List"}
+          title={title}
           data={rows}
           columns={renderedColumns}
           options={options}
@@ -111,7 +113,7 @@ function DataTable({
           <Typography style={{ marginTop: 10 }} variant="h5">
             Σύνολα:
           </Typography>
-          <Grid style={{marginLeft:10}} container spacing={3} item xs>
+          <Grid style={{ marginLeft: 10 }} container spacing={3} item xs>
             {columnsToSum.map(column => (
               <Grid key={column.name} item xs>
                 <Typography variant="h6">
