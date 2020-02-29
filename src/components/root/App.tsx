@@ -4,11 +4,11 @@ import DataTable, { Column } from "../table/DataTable";
 import CreateColumns from "../create-columns/CreateColumns";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
   Link,
-  useHistory,
-  Redirect
+  Redirect,
+  Route,
+  Switch,
+  useHistory
 } from "react-router-dom";
 import clsx from "clsx";
 import { useTheme } from "@material-ui/core/styles";
@@ -27,13 +27,13 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import SearchIcon from "@material-ui/icons/Search";
+import ViewColumnIcon from "@material-ui/icons/ViewColumn";
+import ViewList from "@material-ui/icons/ViewList";
 import { useStyles } from "./style";
 import TableList from "../table-list/TableList";
 import CreateRecord from "../create-record/CreateRecord";
-import { firestore, app, initializeApp, auth } from "firebase";
-import { Button, Grid } from "@material-ui/core";
+import { auth, firestore, initializeApp } from "firebase";
+import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 
 export interface DataCategory {
@@ -135,6 +135,7 @@ const App = () => {
     const newCategories = categories.map((oldCategory, i) =>
       i === categoryIndex ? newCategory : oldCategory
     );
+
     setCategories(newCategories);
     sendToFirestore(newCategories);
   };
@@ -142,6 +143,13 @@ const App = () => {
   const onDeleteCategory = (category: DataCategory) => {
     const c = categories.filter(x => x.id !== category.id);
     console.log(c);
+    if (c.length === 0) {
+      console.log("err1");
+      setSelectedCategoryIndex(undefined);
+    } else {
+      console.log("err2");
+      setSelectedCategoryIndex(0);
+    }
     sendToFirestore(c);
     setCategories(c);
   };
@@ -161,7 +169,7 @@ const App = () => {
     setSelectedCategoryIndex(categories.length);
   };
   const login = () => {
-    const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (regex.test(usernameInput)) {
       auth()
@@ -317,13 +325,13 @@ const App = () => {
               </ListItem>
               <ListItem button component={Link} to="/columns">
                 <ListItemIcon>
-                  <InboxIcon />
+                  <ViewColumnIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Στήλες"} />
               </ListItem>
               <ListItem button component={Link} to="/rows">
                 <ListItemIcon>
-                  <SearchIcon />
+                  <ViewList />
                 </ListItemIcon>
                 <ListItemText primary={"Δεδομένα"} />
               </ListItem>

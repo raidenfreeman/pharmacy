@@ -18,9 +18,7 @@ import {
   List,
   ListItem
 } from "@material-ui/core";
-import { Column } from "../table/DataTable";
 import { DataCategory } from "../root/App";
-import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles({
   root: {

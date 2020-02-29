@@ -7,7 +7,6 @@ import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { Grid } from "@material-ui/core";
 import { DataCategory } from "../root/App";
 import { v4 as uuid } from "uuid";
 import { Prompt } from "react-router";
