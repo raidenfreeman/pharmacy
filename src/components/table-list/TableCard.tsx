@@ -45,7 +45,6 @@ export default function TableCard({
   onSelect: () => void;
   onDelete: () => void;
 }) {
-  console.log("card", isSelected);
   const styles = useStyles();
   const classes = styles.root + (isSelected ? " " + styles.selected : "");
   const [open, setOpen] = React.useState(false);

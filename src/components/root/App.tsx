@@ -142,12 +142,9 @@ const App = () => {
 
   const onDeleteCategory = (category: DataCategory) => {
     const c = categories.filter(x => x.id !== category.id);
-    console.log(c);
     if (c.length === 0) {
-      console.log("err1");
       setSelectedCategoryIndex(undefined);
     } else {
-      console.log("err2");
       setSelectedCategoryIndex(0);
     }
     sendToFirestore(c);
@@ -155,7 +152,6 @@ const App = () => {
   };
   const onSelectCategory = (category: DataCategory) => {
     const r = categories.findIndex(x => x.id === category.id);
-    console.log(r);
     setSelectedCategoryIndex(r);
   };
   const onEditCategory = (category: DataCategory) => {
@@ -200,7 +196,6 @@ const App = () => {
     // Confirm the link is a sign-in with email link.
     setRunOnce(true);
     auth().onAuthStateChanged(user => {
-      console.log(user);
       if (user) {
         setCurrentUser(user as any);
 
@@ -208,7 +203,6 @@ const App = () => {
           .doc(user.uid)
           .get()
           .then(doc => {
-            console.log("setting");
             if (doc.exists) {
               setCategories((doc.data() as any).userCategories);
             }
@@ -233,11 +227,9 @@ const App = () => {
           .signInWithEmailLink(email, window.location.href)
           .then(function(result: any) {
             const { user } = result;
-            console.log(result);
             // Clear email from storage.
             if (user) {
               window.localStorage.removeItem("emailForSignIn");
-              console.log(user);
               setCurrentUser(user);
             }
             // You can access the new user via result.user
@@ -247,7 +239,6 @@ const App = () => {
             // result.additionalUserInfo.isNewUser
           })
           .catch(function(error) {
-            console.log("signin error");
             console.log(error);
             // Some error occurred, you can inspect the code: error.code
             // Common errors could be invalid email and invalid or expired OTPs.

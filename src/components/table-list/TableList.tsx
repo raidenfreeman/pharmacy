@@ -19,7 +19,6 @@ function TableList({
   onSelect: (category: DataCategory) => void;
   onAdd: (category: DataCategory) => void;
 }) {
-  console.log('list',selectedCategoryIndex)
   return (
     <>
       {!categories ||

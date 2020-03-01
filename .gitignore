@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+/.firebase
+
+/.idea
+
+
+
 # testing
 /coverage
 
