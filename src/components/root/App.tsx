@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from "react";
+import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import "./App.css";
 import DataTable, { Column } from "../table/DataTable";
 import CreateColumns from "../create-columns/CreateColumns";
@@ -164,7 +164,8 @@ const App = () => {
     sendToFirestore(newCategories);
     setSelectedCategoryIndex(categories.length);
   };
-  const login = () => {
+  const login = (e: FormEvent<any>) => {
+    e.preventDefault();
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (regex.test(usernameInput)) {
@@ -394,13 +395,13 @@ const App = () => {
                   return (
                     <div className="login">
                       {hasEmailBeenSent ? (
-                        <Typography variant="h5" style={{ marginBottom: 80 }}>
+                        <Typography align="center" variant="h5" style={{ marginBottom: 80 }}>
                           Ακολουθήστε το σύνδεσμο στο email σας για να
                           συνδεθείτε στην εφαρμογή. Μπορεί να έχει σταλεί στα
                           Ανεπιθύμητα.
                         </Typography>
                       ) : (
-                        <>
+                        <form onSubmit={login} className="login">
                           <Typography variant="h5" style={{ marginBottom: 80 }}>
                             Συνδεθείτε στην εφαρμογή με τη διεύθυνση email σας
                           </Typography>
@@ -424,7 +425,7 @@ const App = () => {
                           >
                             ΣΥΝΔΕΣΗ
                           </Button>
-                        </>
+                        </form>
                       )}
                     </div>
                   );

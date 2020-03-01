@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -26,7 +26,8 @@ function CreateCategory({
 
   const [name, setName] = useState("");
   const [isBlocking, setIsBlocking] = useState(false);
-  const onSave = () => {
+  const onSave = (e: FormEvent<any>) => {
+    e.preventDefault();
     if (name && name !== "") {
       onCreateCategory({ id: uuid(), columns: [], rows: [], name });
       setName("");
@@ -48,29 +49,31 @@ function CreateCategory({
           `Δεν έχετε αποθηκεύσει τις αλλαγές σας. Θέλετε να φύγετε;`
         }
       />
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardContent>
-            <TextField
-              value={name}
-              onChange={onTextChanged}
-              label={"Όνομα Κατηγορίας"}
-              variant="outlined"
-            />
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button
-            size="small"
-            color="primary"
-            onClick={onSave}
-            variant="contained"
-            endIcon={<SaveIcon />}
-          >
-            Αποθήκευση
-          </Button>
-        </CardActions>
-      </Card>
+      <form onSubmit={onSave}>
+        <Card className={classes.root}>
+          <CardActionArea>
+            <CardContent>
+              <TextField
+                value={name}
+                onChange={onTextChanged}
+                label={"Όνομα Κατηγορίας"}
+                variant="outlined"
+              />
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button
+              size="small"
+              color="primary"
+              onClick={onSave}
+              variant="contained"
+              endIcon={<SaveIcon />}
+            >
+              Αποθήκευση
+            </Button>
+          </CardActions>
+        </Card>
+      </form>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Fab, Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
@@ -18,7 +18,9 @@ function CreateRecord({
 
   const onChangeGenerator = (key: string) => (v: any) =>
     set({ ...s, [key]: v.target.value });
-  const onSave = () => {
+  const onSave = (e: FormEvent<any>) => {
+    e.preventDefault();
+    console.log('hi');
     const numberOfValuesWithData = Object.values(s).filter(x => x).length;
     if (numberOfValuesWithData !== columns.length) {
       return;
@@ -29,24 +31,26 @@ function CreateRecord({
   };
   return (
     <Paper style={{ margin: 5, padding: 10 }}>
+        <form onSubmit={onSave}>
       <Grid container spacing={3}>
-        {columns.map((c, i) => (
-          <Grid key={c.name} item xs>
-            <TextField
-              inputRef={i === 0 ? re : null}
-              value={s[c.name] || ""}
-              onChange={onChangeGenerator(c.name)}
-              label={c.label}
-              variant="outlined"
-            />
+          {columns.map((c, i) => (
+            <Grid key={c.name} item xs>
+              <TextField
+                inputRef={i === 0 ? re : null}
+                value={s[c.name] || ""}
+                onChange={onChangeGenerator(c.name)}
+                label={c.label}
+                variant="outlined"
+              />
+            </Grid>
+          ))}
+          <Grid item xs>
+            <Fab color="primary" type="submit" size="small" onClick={onSave}>
+              <SaveIcon />
+            </Fab>
           </Grid>
-        ))}
-        <Grid item xs>
-          <Fab color="primary" size="small" onClick={onSave}>
-            <SaveIcon />
-          </Fab>
-        </Grid>
       </Grid>
+        </form>
     </Paper>
   );
 }
